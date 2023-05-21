@@ -7,6 +7,8 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function App() {
@@ -14,6 +16,7 @@ function App() {
     
     <BrowserRouter>
     <Base />
+    <ToastContainer position='top-center' />
       <Routes>
       <Route path='/' element={<Home />}/>
       <Route path='/about' element={<About />}/>

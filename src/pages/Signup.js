@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import { Button, Card, CardBody, CardHeader, Container, Form, FormGroup, Input, Label } from "reactstrap"
+import { Button, Card, CardBody, CardHeader, Container, Form, FormFeedback, FormGroup, Input, Label } from "reactstrap"
 import { signUp } from "../services/user-service"
+import { toast } from "react-toastify"
 //import (signUp)
 const Signup=()=> {
     // data is the object where the data from the form is hold before sending to the backend
@@ -43,12 +44,38 @@ const Signup=()=> {
     const submitForm=(event)=>{
         event.preventDefault();
 
-        signUp(data).then((resp)=>{
-            console.log(resp)
-            console.log("success log")
+       /* if(error.isError){
+            toast.error("Form data is invalid!!")
+            return;
+        }*/
+
+        console.log(data);
+
+        signUp(data)
+            .then((resp)=>{
+                console.log(resp);
+                console.log("success log");
+                toast.success("User is Registered Successfully!! User id : "+resp.uid)
+                setData({
+                    name:'',
+                 email:'',
+            password:'',
+            about:'',
+            phone:'',
+                })
+                setError({
+                    isError:false,
+                    errors:null
+                })   
         }).catch((error)=>{
             console.log(error)
             console.log("Error log")
+            //handle errors in proper way
+            setError({
+                errors:error,
+                isError:true
+            })
+            toast.error("Form data is invalid!!")
         })
     }
 
@@ -72,7 +99,13 @@ const Signup=()=> {
                     <FormGroup>
                         <Label for="name">Enter Name</Label>
                         <Input id="name" type="text" placeholder="James"  onChange={(e)=> handleChange(e,'name')}
-                        value={data.name}/>
+                        value={data.name}
+                        invalid={ error.errors?.response?.data?.name ? true: false}
+                        />
+
+                        <FormFeedback >
+                            {error.errors?.response?.data?.name}
+                        </FormFeedback>
                     </FormGroup>
 
 
@@ -81,7 +114,13 @@ const Signup=()=> {
                         <Label for="email">Enter Email</Label>
                         <Input id="email" type="email" placeholder="James_maria@gmail.com"
                         onChange={(e)=> handleChange(e,'email')}
-                        value={data.email} />
+                        value={data.email}
+                        invalid={ error.errors?.response?.data?.Email ? true: false}
+                        />
+
+                        <FormFeedback>
+                            {!error.errors?.response?.Email?.name ? "Please Enter a valid Email ID":""}
+                        </FormFeedback>
                     </FormGroup>
 
                     {/* Pasword Field */}
@@ -89,7 +128,13 @@ const Signup=()=> {
                         <Label for="password">Enter Password</Label>
                         <Input id="password" type="password" placeholder="Jam&Maria3478"
                         onChange={(e)=> handleChange(e,'password')} 
-                        value={data.password}/>
+                        value={data.password}
+                        invalid={ error.errors?.response?.data?.password ? true: false}
+                        />
+
+                        <FormFeedback>
+                            {error.errors?.response?.data?.password ? "Password must contain a lowecase and a uppercase character with some numbers and special symbols!":""}
+                        </FormFeedback>
                     </FormGroup>
 
                     {/* About Field */}
@@ -98,7 +143,13 @@ const Signup=()=> {
                         <Input id="about" type="textarea" placeholder="I am an Event Manager." 
                         style={{height: '75px'}}
                         onChange={(e)=> handleChange(e,'about')}
-                        value={data.about}/>
+                        value={data.about}
+                        invalid={ error.errors?.response?.data?.about ? true: false}
+                        />
+
+                        <FormFeedback>
+                            {error.errors?.response?.data?.about}
+                        </FormFeedback>
                     </FormGroup>
 
                     {/* Phone Field */}
@@ -106,7 +157,13 @@ const Signup=()=> {
                         <Label for="phone">Enter Phone Number</Label>
                         <Input id="phone" type="tel" placeholder="+91 5556667770" 
                         onChange={(e)=> handleChange(e,'phone')}
-                        value={data.phone}/>
+                        value={data.phone}
+                        invalid={ error.errors?.response?.data?.phone ? true: false}
+                        />
+
+                        <FormFeedback>
+                            {error.errors?.response?.data?.phone}
+                        </FormFeedback>
                     </FormGroup>
 
                     {/* Button Fields */}
