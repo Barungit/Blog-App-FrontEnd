@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Button, Card, CardBody, CardHeader, Container, Form, FormFeedback, FormGroup, Input, Label } from "reactstrap"
 import { signUp } from "../services/user-service"
 import { toast } from "react-toastify"
+import Base from "../Components/Base"
 //import (signUp)
 const Signup=()=> {
     // data is the object where the data from the form is hold before sending to the backend
@@ -81,6 +82,7 @@ const Signup=()=> {
 
 
     return (
+        <Base>
         <div>
             {/* for blog lovers!. Read , write, explore!*/}
             {/* container to make the form have ggaps from both ends and margin y axis to gap from top and bottom.*/}
@@ -183,6 +185,7 @@ const Signup=()=> {
 
             </Container>
         </div>
+        </Base>
     )
 }
 export default Signup

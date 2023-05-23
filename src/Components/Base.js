@@ -1,11 +1,11 @@
 import { Children } from "react"
-import CustomNavBar from "./CustomNavbar";
+import CustomNavBar2 from "./CustomNavbar2";
 
 const Base=({title="Welcome to our Website!",children})=>{
 
 return(
         <div className="container-fluid m-0 p-0">
-            <CustomNavBar />
+            <CustomNavBar2 />
 
             {children}
 

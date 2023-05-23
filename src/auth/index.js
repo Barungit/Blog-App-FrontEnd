@@ -22,9 +22,9 @@ export const doLogout = (next) => {
 
 //getCurrent user deatails
 export const getCurrentUserDetail = () =>{
-    if(isLoggedIn){
+    if(isLoggedIn()){
         return JSON.parse(localStorage.getItem("data")).user;
     } else {
-        return false;
+        return undefined;
     }
 }
