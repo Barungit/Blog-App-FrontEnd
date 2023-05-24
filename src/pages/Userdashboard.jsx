@@ -1,9 +1,14 @@
 import React from 'react'
 import Base from '../Components/Base'
+import Addpost from '../Components/Addpost'
+import { Container } from 'reactstrap'
 const Userdashboard = () => {
   return (
     <Base>
-    <div>Welcome to user DashBoard!</div>
+    
+    <Container>
+    <Addpost />
+    </Container>
     </Base>
   )
 }

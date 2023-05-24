@@ -3,7 +3,7 @@ import Base from "../Components/Base"
 const Home=()=> {
     return (
         <Base>
-        <div>
+        <div className="App-header">
             <h1>This is homepage!</h1>
             <p>Hi,Welcome Here!</p>
         </div>
