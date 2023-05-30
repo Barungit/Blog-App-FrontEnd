@@ -30,7 +30,7 @@ const Login=()=> {
 
     const handleFormSubmit=(event)=>{
         event.preventDefault();
-        console.log(loginDetail);
+        //console.log(loginDetail);
         //validation
         if(loginDetail.email.trim()=='' || loginDetail.password.trim()==''){
             toast.error("Username and Password is required !!")

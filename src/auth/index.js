@@ -28,3 +28,12 @@ export const getCurrentUserDetail = () =>{
         return undefined;
     }
 }
+
+//get the token
+export const getToken=()=>{
+    if(isLoggedIn()){
+        return JSON.parse(localStorage.getItem("data")).token
+    }else{
+        return null;
+    }
+}

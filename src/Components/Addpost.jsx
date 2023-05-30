@@ -16,6 +16,7 @@ function Addpost() {
     const [post, setPost]=useState({
         title:'',
         content:'',
+       // image:'',
         categoryId:''
     })
 
@@ -96,6 +97,12 @@ function Addpost() {
 			                onChange={contentFieldChanged}  
                         />      
                     </div>
+
+                  { /* <div className='my-3'>
+                    <Label for="image">Select Image</Label>
+                    <Input id="image" name="image" type="file"/>
+                            </div>*/}
+                
 
                     <div className='my-3'>
                         <Label for='category'>Blog Category</Label>
