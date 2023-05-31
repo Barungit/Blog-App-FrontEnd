@@ -5,6 +5,7 @@ import JoditEditor from 'jodit-react'
 import { useRef } from 'react'
 import { createPost as doCreatePost } from '../services/post-service'
 import { getCurrentUserDetail } from '../auth'
+import { toast } from 'react-toastify'
 
 function Addpost() {
     const editor = useRef(null);
@@ -18,7 +19,7 @@ function Addpost() {
         content:'',
        // image:'',
         categoryId:''
-    })
+    });
 
     useEffect(
         ()=>{
@@ -37,8 +38,8 @@ function Addpost() {
     const fieldChanged=(event)=>{
         // console.log(event.target.name)
         // console.log(event.target.value)
-        setPost({...post,[event.target.name]:event.target.value})
-    }
+        setPost({...post,[event.target.name]:event.target.value});
+    };
 
     const contentFieldChanged=(data)=>{
         setPost({...post,'content':data})
@@ -64,7 +65,7 @@ function Addpost() {
         //submit the form on server
         post['userId'] = user.uid
         doCreatePost(post).then(data => {
-            alert("Post Created")
+            toast.success("Blog posted sucessfully!");
             console.log(post)
         }).catch((error)=>{
             alert("error")

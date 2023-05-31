@@ -1,11 +1,19 @@
+import { useEffect } from "react"
 import Base from "../Components/Base"
+import NewFeed from "../Components/NewFeed"
+import { Container } from "reactstrap"
 
 const Home=()=> {
+
     return (
         <Base>
-        <div className="App-header">
-            <h1>This is homepage!</h1>
-            <p>Hi,Welcome Here!</p>
+        <div >
+            
+            <Container className="mt-3">
+            <NewFeed />
+            </Container>
+            
+            
         </div>
         </Base>
     )
