@@ -9,7 +9,7 @@ export const createPost=(postData)=>{
 };
 
 //get all post
- export const loadAllPost=()=>{
+ export const loadAllPost=(pageNumber,pageSize)=>{
 
-    return myAxios.get(`/blogs`).then(response=>response.data);
+    return myAxios.get(`/blogs?pageNumber=${pageNumber}&pageSize=${pageSize}`).then(response=>response.data);
  };
