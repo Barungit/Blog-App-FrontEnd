@@ -13,3 +13,9 @@ export const createPost=(postData)=>{
 
     return myAxios.get(`/blogs?pageNumber=${pageNumber}&pageSize=${pageSize}`).then(response=>response.data);
  };
+
+ //get blog by bid
+ export const loadPost=(bid)=>{
+
+    return myAxios.get(`/blogs/${bid}`).then(response=>response.data);
+ };

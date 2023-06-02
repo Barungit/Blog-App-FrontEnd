@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Userdashboard from './pages/Userdashboard';
 import Privateroute from './Components/Privateroute';
 import Profile_info from './pages/user_pages/Profile_info';
+import PostPage from './pages/PostPage';
 
 
 function App() {
@@ -24,6 +25,8 @@ function App() {
       <Route path='/login' element={<Login />}/>
       <Route path='/signup' element={<Signup />}/>
       <Route path='/services' element={<Services />}/>
+      <Route path='/blogs/:bid' element={<PostPage />}/>
+
       <Route path="/user" element={<Privateroute />}>
         <Route path='dashboard' element={<Userdashboard />}/>
         <Route path='profile_info' element={<Profile_info />}/>
