@@ -11,3 +11,7 @@ export const loginUser=(loginDetail)=>{
     return myAxios.post("/auth/login/",loginDetail).then((response)=>response.data)
 
 }
+
+export const getUserDetails=(uid)=>{
+    return myAxios.get(`/users/${uid}`).then(response=>{return response.data});
+} 

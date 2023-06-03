@@ -19,3 +19,8 @@ export const createPost=(postData)=>{
 
     return myAxios.get(`/blogs/${bid}`).then(response=>response.data);
  };
+
+ //add comment
+ export const createComment=(comment,bid)=>{
+   return privateAxios.post(`/blog/${bid}/comments`,comment);
+ }
