@@ -3,13 +3,13 @@ import { Button, Card, CardBody, Container, Form, Input, Label } from 'reactstra
 import { loadAllCategories } from '../services/category-service'
 import JoditEditor from 'jodit-react'
 import { useRef } from 'react'
-import { createPost as doCreatePost } from '../services/post-service'
+import { createPost as doCreatePost, uploadPostImage } from '../services/post-service'
 import { getCurrentUserDetail } from '../auth'
 import { toast } from 'react-toastify'
 
 function Addpost() {
     const editor = useRef(null);
-	//const [content, setContent] = useState('');
+	const [image, setImage] = useState(null);
 
     const [categories,setCategories]=useState([])
     const [user,setUser]=useState(undefined)
@@ -17,7 +17,6 @@ function Addpost() {
     const [post, setPost]=useState({
         title:'',
         content:'',
-       // image:'',
         categoryId:''
     });
 
@@ -26,7 +25,7 @@ function Addpost() {
             setUser(getCurrentUserDetail())
 
             loadAllCategories().then((data)=>{
-                //console.log(data)
+                console.log(data)
                 setCategories(data)
             }).catch(error=>{
                 console.log(error)
@@ -65,12 +64,31 @@ function Addpost() {
         //submit the form on server
         post['userId'] = user.uid
         doCreatePost(post).then(data => {
+           console.log(data);
+            uploadPostImage(data.bid,image).then(data=>{
+            toast.success("Image Uploaded!!");
+           }).catch(error=>{
+               toast.error("Error in uploading image!")
+            console.log(error)
+            })
+
             toast.success("Blog posted sucessfully!");
             console.log(post)
+           /* setPost({
+                title:'',
+                content:'',
+                categoryId:''
+            })*/
         }).catch((error)=>{
             alert("error")
             console.log(error)
         })
+    }
+
+    const handlefilechange=(event)=>{
+        console.log(event.target.files[0])
+        
+        setImage(event.target.files[0])
     }
   return (
     <div className='wrapper'>
@@ -98,11 +116,13 @@ function Addpost() {
 			                onChange={contentFieldChanged}  
                         />      
                     </div>
+                    
 
-                  { /* <div className='my-3'>
+                    {/*image*/}
+                   <div className='my-3'>
                     <Label for="image">Select Image</Label>
-                    <Input id="image" name="image" type="file"/>
-                            </div>*/}
+                    <Input id="image" name="image" type="file" accept="image/*" onChange={handlefilechange}/>
+                            </div>
                 
 
                     <div className='my-3'>

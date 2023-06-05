@@ -3,8 +3,9 @@ import { myAxios } from "./helper";
 // send blog to server
 export const createPost=(postData)=>{
     console.log(postData);
-    return privateAxios.post(`/user/${postData.userId}/category/${postData.categoryId}/blogs`,postData).then(response=>console.log(response));
-    
+    return privateAxios.post(`/user/${postData.userId}/category/${postData.categoryId}/blogs`,postData).then(response=>{return response.data});
+    //{return response.data}
+    //console.log(response)
     
 };
 
@@ -24,3 +25,15 @@ export const createPost=(postData)=>{
  export const createComment=(comment,bid)=>{
    return privateAxios.post(`/blog/${bid}/comments`,comment);
  }
+
+ //upload post image
+ export const uploadPostImage=(bid, image)=>{
+   let formData=new FormData();
+   formData.append("image", image);
+
+   return privateAxios.post(`/blogs/image/upload/${bid}`,formData,{
+      headers:{
+         'Content-Type':'multipart/form-data'
+      }
+   }).then((response)=>response.data);
+ };
