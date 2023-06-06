@@ -42,3 +42,8 @@ export const createPost=(postData)=>{
  export const loadPostbyCategory=(categoryId,pageNumber,pageSize)=>{
    return privateAxios.get(`/category/${categoryId}/blogs?pageNumber=${pageNumber}&pageSize=${pageSize}`).then(res=>res.data)
  }
+
+ //get blogs by uid
+ export const loadPostbyUser=(uid,pageNumber,pageSize)=>{
+   return privateAxios.get(`/user/${uid}/blogs?pageNumber=${pageNumber}&pageSize=${pageSize}`).then(res=>res.data)
+ }

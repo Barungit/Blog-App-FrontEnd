@@ -5,13 +5,14 @@ import { useEffect } from 'react'
 function UserProvider({children}) {
 
     const [user,setUser]=useState({
-        name:'Barun'
+        id:1,
+        name:'USER JI'
     })
-    useEffect(()=>{
+    /*useEffect(()=>{
         setUser({
-            name:"RadhaKrishna"
+            name:"BARUN"
         })
-    },[])
+    },[])*/
 
   return (
     <userContext.Provider value={user}>

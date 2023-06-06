@@ -1,11 +1,16 @@
 import React from 'react'
-import { useEffect } from 'react'
-import { loadAllPost } from '../services/post-service'
+import Base from '../../Components/Base'
+import UserhorizontalList from '../../Components/UserhorizontalList'
+import CategorySideMenu from '../../Components/CategorySideMenu'
+import NewFeed from '../../Components/NewFeed'
+import { Col, Container, Pagination, PaginationItem, PaginationLink, Row } from 'reactstrap'
+import { loadPostbyUser } from '../../services/post-service'
 import { useState } from 'react'
-import { Row,Col, Pagination, PaginationItem, PaginationLink, Container } from 'reactstrap'
-import Post from './Post'
+import { useEffect } from 'react'
+import Post from '../../Components/Post'
+import { getCurrentUserDetail } from '../../auth'
 
-function NewFeed() {
+function MyBlogs() {
 
     const [postContent,setPostContent]=useState({
         content:[],
@@ -17,8 +22,7 @@ function NewFeed() {
     })
 
     useEffect(()=>{
-        //load all blogs from the server
-        loadAllPost(0,10).then((data)=>{
+      loadPostbyUser(getCurrentUserDetail().uid,0,10).then((data)=>{
             console.log(data);
             setPostContent(data);
         }).catch(error=>{
@@ -27,19 +31,19 @@ function NewFeed() {
     },[])
 
     const changePage=(pageNumber=0, pageSize=10)=>{
-        loadAllPost(pageNumber,pageSize).then(data=>{
-            console.log(data);
-            setPostContent(data);
-            window.scroll(0,0);
-        }).catch(error=> {
-            console.log(error);
-        })
-    }
-
+      loadPostbyUser(getCurrentUserDetail().uid,pageNumber,pageSize).then(data=>{
+          console.log(data);
+          setPostContent(data);
+          window.scroll(0,0);
+      }).catch(error=> {
+          console.log(error);
+      })
+  }
 
   return (
-    <div className="container fluid mainbody">
-       <Row>
+    <Base>
+        <UserhorizontalList />
+        <Row> 
             <Col md={
                 {
                     size:12,
@@ -108,9 +112,14 @@ function NewFeed() {
                 </Pagination>
                 </Container>                
             </Col>
-       </Row>
-    </div>
+      
+      </Row>
+    
+    
+    </Base>
+
+    
   )
 }
 
-export default NewFeed
+export default MyBlogs
