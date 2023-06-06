@@ -1,7 +1,8 @@
 import { useEffect } from "react"
 import Base from "../Components/Base"
 import NewFeed from "../Components/NewFeed"
-import { Container } from "reactstrap"
+import { Col, Container, Row } from "reactstrap"
+import CategorySideMenu from "../Components/CategorySideMenu"
 
 const Home=()=> {
 
@@ -9,9 +10,16 @@ const Home=()=> {
         <Base>
         <div >
             
-            <Container className="mt-3">
-            <NewFeed />
-            </Container>
+                <Row>
+                    <Col md={2} className="border">
+                        <CategorySideMenu />
+                    </Col>
+
+                    <Col md={10} className="border">
+                        <NewFeed />
+                    </Col>
+                </Row>
+            
             
             
         </div>

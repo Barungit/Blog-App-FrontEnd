@@ -42,8 +42,8 @@ function NewFeed() {
        <Row>
             <Col md={
                 {
-                    size:10,
-                    offset:1
+                    size:12,
+                    offset:0
                 }
             }>
             
@@ -63,8 +63,8 @@ function NewFeed() {
                 aria-label="Page navigation example"
                 size="lg"
                 >
-                <PaginationItem onClick={()=>changePage(0)}>
-                    <PaginationLink
+                <PaginationItem disabled={postContent.pageNumber==0} >
+                    <PaginationLink onClick={()=>changePage(0)}
                     first
                     >
                     First
@@ -98,8 +98,8 @@ function NewFeed() {
                     Next
                     </PaginationLink>
                 </PaginationItem>
-                <PaginationItem onClick={()=>changePage(postContent.totalPages-1)} >
-                    <PaginationLink
+                <PaginationItem disabled={postContent.lastPage}  >
+                    <PaginationLink onClick={()=>changePage(postContent.totalPages-1)}
                     last
                     >
                     Last

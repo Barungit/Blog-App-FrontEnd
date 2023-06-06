@@ -37,3 +37,8 @@ export const createPost=(postData)=>{
       }
    }).then((response)=>response.data);
  };
+
+ //get cateroy ise post
+ export const loadPostbyCategory=(categoryId,pageNumber,pageSize)=>{
+   return privateAxios.get(`/category/${categoryId}/blogs?pageNumber=${pageNumber}&pageSize=${pageSize}`).then(res=>res.data)
+ }
