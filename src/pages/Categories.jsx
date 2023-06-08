@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { Col, Container, Pagination, PaginationItem, PaginationLink, Row } from 'reactstrap'
 import CategorySideMenu from '../Components/CategorySideMenu'
 import NewFeed from '../Components/NewFeed'
-import { loadPostbyCategory } from '../services/post-service'
+import { deletePostService, loadPostbyCategory } from '../services/post-service'
 import { toast } from 'react-toastify'
 import Post from '../Components/Post'
 
@@ -34,7 +34,27 @@ function Categories() {
             toast.error("Error in loading Blogs by pagination!")
         })
     }
+
+    function deletePost(post){
+        // deleteing a post
+        console.log(post)
     
+        deletePostService(post.bid).then(res => {
+            console.log(res)
+            toast.success("Blog is deleted!")
+            
+            let newBlogs = posts?.content.filter(b => b.bid!=post.bid)
+            SetPosts({...posts, content:newBlogs})
+           
+    
+            
+        }).catch(error => {
+            console.log(error)
+            toast.error("Error in deleting this blog!")
+        })
+    
+      }
+
     return (
     
 
@@ -51,7 +71,7 @@ function Categories() {
                             
                              posts?.content?.map((post)=>(
                         
-                                 <Post post={post} key={post.bid} />
+                                 <Post post={post} key={post.bid} deletePost={deletePost} />
                                 ))
                             }
                             {posts.totalElements<=0 ? <h4>No Blogs here!</h4> : ''}

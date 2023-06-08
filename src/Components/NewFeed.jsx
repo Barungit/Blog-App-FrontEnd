@@ -1,9 +1,10 @@
 import React from 'react'
 import { useEffect } from 'react'
-import { loadAllPost } from '../services/post-service'
+import { deletePostService, loadAllPost } from '../services/post-service'
 import { useState } from 'react'
 import { Row,Col, Pagination, PaginationItem, PaginationLink, Container } from 'reactstrap'
 import Post from './Post'
+import { toast } from 'react-toastify'
 
 function NewFeed() {
 
@@ -25,6 +26,25 @@ function NewFeed() {
             console.log(error);
         })
     },[])
+
+    function deletePost(post){
+        // deleteing a post
+        console.log(post)
+    
+        deletePostService(post.bid).then(res => {
+            console.log(res)
+            toast.success("Blog is deleted!")
+            console.log(postContent)
+            let newBlogs = postContent?.content.filter(b => b.bid!=post.bid)
+            setPostContent({...postContent, content:newBlogs})
+            
+            console.log(postContent)
+        }).catch(error => {
+            console.log(error)
+            toast.error("Error in deleting this blog!")
+        })
+      }
+
 
     const changePage=(pageNumber=0, pageSize=10)=>{
         loadAllPost(pageNumber,pageSize).then(data=>{
@@ -52,7 +72,7 @@ function NewFeed() {
                 {
                     postContent?.content?.map((post)=>(
                         
-                        <Post post={post} key={post.bid} />
+                        <Post deletePost={deletePost} post={post} key={post?.bid} />
                     ))
                 }
 

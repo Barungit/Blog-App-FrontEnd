@@ -47,3 +47,8 @@ export const createPost=(postData)=>{
  export const loadPostbyUser=(uid,pageNumber,pageSize)=>{
    return privateAxios.get(`/user/${uid}/blogs?pageNumber=${pageNumber}&pageSize=${pageSize}`).then(res=>res.data)
  }
+
+ //delete a blog
+ export function deletePostService(bid) {
+  return privateAxios.delete(`/blogs/${bid}`).then((res) => res.data);
+ }

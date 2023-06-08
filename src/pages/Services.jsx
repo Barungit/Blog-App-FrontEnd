@@ -5,12 +5,7 @@ import userContext from '../context/userContext'
 function Services() {
  // const myObjectString = localStorage.getItem();
  // Loop through all keys in the local storage
-for (let i = 0; i < localStorage.length; i++) {
-  const key = localStorage.key(i);
-  const valueString = localStorage.getItem(key.user);
-  const value = JSON.parse(valueString);
-  console.log(`${key}:`, value ,i);
-}
+ 
   return (
     
     <userContext.Consumer>

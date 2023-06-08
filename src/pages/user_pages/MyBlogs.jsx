@@ -4,11 +4,12 @@ import UserhorizontalList from '../../Components/UserhorizontalList'
 import CategorySideMenu from '../../Components/CategorySideMenu'
 import NewFeed from '../../Components/NewFeed'
 import { Col, Container, Pagination, PaginationItem, PaginationLink, Row } from 'reactstrap'
-import { loadPostbyUser } from '../../services/post-service'
+import { deletePostService, loadPostbyUser } from '../../services/post-service'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import Post from '../../Components/Post'
 import { getCurrentUserDetail } from '../../auth'
+import { toast } from 'react-toastify'
 
 function MyBlogs() {
 
@@ -22,13 +23,17 @@ function MyBlogs() {
     })
 
     useEffect(()=>{
-      loadPostbyUser(getCurrentUserDetail().uid,0,10).then((data)=>{
+      loadBlogData()
+    },[])
+
+    function loadBlogData(){
+        loadPostbyUser(getCurrentUserDetail().uid,0,10).then((data)=>{
             console.log(data);
             setPostContent(data);
         }).catch(error=>{
             console.log(error);
         })
-    },[])
+    }
 
     const changePage=(pageNumber=0, pageSize=10)=>{
       loadPostbyUser(getCurrentUserDetail().uid,pageNumber,pageSize).then(data=>{
@@ -38,6 +43,23 @@ function MyBlogs() {
       }).catch(error=> {
           console.log(error);
       })
+  }
+
+  function deletePost(post){
+    // deleteing a post
+    console.log(post)
+
+    deletePostService(post.bid).then(res => {
+        console.log(res)
+        toast.success("Blog is deleted!")
+        //let newBlogs = postContent.content.filter(b => b.bid!=post.bid)
+           // setPostContent({newBlogs})
+        loadBlogData()
+    }).catch(error => {
+        console.log(error)
+        toast.error("Error in deleting this blog!")
+    })
+
   }
 
   return (
@@ -56,7 +78,7 @@ function MyBlogs() {
                 {
                     postContent?.content?.map((post)=>(
                         
-                        <Post post={post} key={post.bid} />
+                        <Post post={post} key={post.bid} deletePost={deletePost} />
                     ))
                 }
 
