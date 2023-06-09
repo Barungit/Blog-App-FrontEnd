@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Card, CardBody, CardHeader, CardText, CardTitle } from 'reactstrap'
 import { getCurrentUserDetail, isLoggedIn } from '../auth'
+import { useContext } from 'react';
+import userContext from '../context/userContext';
 
 function Post({post={title:"Def title",content:"Def content"}, deletePost}) {
-
+  const userContextData = useContext(userContext);
   const [user, setUser] = useState(null)
   const [login, setLogin] = useState(null)
   useEffect(() => {
@@ -23,7 +25,7 @@ function Post({post={title:"Def title",content:"Def content"}, deletePost}) {
             </CardText>
             
               <Link to={'/blogs/'+post.bid} className='btn btn-warning'>Read More</Link>
-              {isLoggedIn && (user && user.uid === post.user.uid ? <Button onClick={() => deletePost(post)} color='danger' className='ms-2'>Delete</Button> : '')}
+              {userContextData.user.login && (user && user.uid === post.user.uid ? <Button onClick={() => deletePost(post)} color='danger' className='ms-2'>Delete</Button> : '')}
         </CardBody>
     </Card>
   )

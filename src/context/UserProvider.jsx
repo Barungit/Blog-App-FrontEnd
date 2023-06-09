@@ -5,8 +5,8 @@ import { useEffect } from 'react'
 function UserProvider({children}) {
 
     const [user,setUser]=useState({
-        id:1,
-        name:'USER JI'
+        data:{},
+        login:false
     })
     /*useEffect(()=>{
         setUser({
@@ -15,7 +15,7 @@ function UserProvider({children}) {
     },[])*/
 
   return (
-    <userContext.Provider value={user}>
+    <userContext.Provider value={{user, setUser}}>
         {children}
     </userContext.Provider>
   )

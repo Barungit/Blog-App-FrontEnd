@@ -5,9 +5,11 @@ import { useState } from 'react'
 import { Row,Col, Pagination, PaginationItem, PaginationLink, Container } from 'reactstrap'
 import Post from './Post'
 import { toast } from 'react-toastify'
+import { useContext } from 'react'
+import userContext from '../context/userContext'
 
 function NewFeed() {
-
+    const userContextData = useContext(userContext);
     const [postContent,setPostContent]=useState({
         content:[],
         totalElements:'',

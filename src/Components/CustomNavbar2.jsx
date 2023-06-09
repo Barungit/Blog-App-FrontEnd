@@ -15,8 +15,11 @@ import {
   DropdownItem, 
   NavbarText} from 'reactstrap';
 import { doLogout, getCurrentUserDetail, isLoggedIn } from '../auth';
+import userContext from '../context/userContext';
+import { useContext } from 'react';
 
  const CustomNavBar2 = () => {
+  const userContextData = useContext(userContext);
   let navigate=useNavigate()
   const [isOpen,setIsOpen] = useState(false)
   const [login,setLogin]=useState(false)
@@ -31,6 +34,10 @@ import { doLogout, getCurrentUserDetail, isLoggedIn } from '../auth';
     doLogout(()=>{
       //logged out
       setLogin(false)
+      userContextData.setUser({
+        data: null,
+        login: false
+      })
       navigate("/")
     })
   }

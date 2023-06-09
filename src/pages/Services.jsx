@@ -10,12 +10,12 @@ function Services() {
     
     <userContext.Consumer>
       {
-        (user) => (
+        (object) => (
           <Base>
           
             <div>
               <h1>This is services page.</h1>
-              <h3>Welcome : {user.name}</h3>
+              <h3>Welcome : {object.user.login && object.user.data.user.name}</h3>
               <h6>{"myObjectString"}</h6>
               
             </div>

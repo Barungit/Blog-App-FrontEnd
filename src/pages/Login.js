@@ -4,9 +4,13 @@ import { Button, Card, CardBody, CardHeader, Col, Container, Form, FormGroup, In
 import { loginUser } from "../services/user-service"
 import { doLogin } from "../auth"
 import { useNavigate } from "react-router-dom"
+import userContext from "../context/userContext"
 
 import Base from "../Components/Base"
+import { useContext } from "react"
 const Login=()=> {
+
+    const userContextData = useContext(userContext);
 
     const navigate=useNavigate()
 
@@ -45,6 +49,10 @@ const Login=()=> {
             //save the data to localstorage
             doLogin(data,()=>{
                 console.log("login detail is saved to localstorage")
+                userContextData.setUser({
+                    data: data,
+                    login: true,
+                })
                 //redirect to user dashboard page
                 navigate("/user/dashboard")
             })
