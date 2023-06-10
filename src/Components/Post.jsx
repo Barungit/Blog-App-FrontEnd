@@ -26,6 +26,7 @@ function Post({post={title:"Def title",content:"Def content"}, deletePost}) {
             
               <Link to={'/blogs/'+post.bid} className='btn btn-warning'>Read More</Link>
               {userContextData.user.login && (user && user.uid === post.user.uid ? <Button onClick={() => deletePost(post)} color='danger' className='ms-2'>Delete</Button> : '')}
+              {userContextData.user.login && (user && user.uid === post.user.uid ? <Button tag={Link} to={`/user/update_blog/${post.bid}`} color='warning' className='ms-2'>Update</Button> : '')}
         </CardBody>
     </Card>
   )

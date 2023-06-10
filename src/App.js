@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { BrowserRouter,Routes,Route } from 'react-router-dom';
+import { BrowserRouter,Routes,Route, HashRouter, UNSAFE_DataRouterContext } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
 import Login from './pages/Login';
@@ -15,6 +15,7 @@ import PostPage from './pages/PostPage';
 import UserProvider from './context/UserProvider';
 import Categories from './pages/Categories';
 import MyBlogs from './pages/user_pages/MyBlogs';
+import UpdateBlog from './pages/UpdateBlog';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route path='dashboard' element={<Userdashboard />}/>
         <Route path='profile_info' element={<Profile_info />}/>
         <Route path='myblogs' element={<MyBlogs />}/>
+        <Route path='update_blog/:bid' element={<UpdateBlog />}/>
       </Route>
 
       </Routes>

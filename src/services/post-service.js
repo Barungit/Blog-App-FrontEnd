@@ -52,3 +52,8 @@ export const createPost=(postData)=>{
  export function deletePostService(bid) {
   return privateAxios.delete(`/blogs/${bid}`).then((res) => res.data);
  }
+
+ //update the blog
+ export function updatePostService(post,bid) {
+  return privateAxios.put(`/blogs/${bid}`,post).then((resp => resp.data));
+ }
