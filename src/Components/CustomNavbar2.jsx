@@ -24,16 +24,24 @@ import { useContext } from 'react';
   const [isOpen,setIsOpen] = useState(false)
   const [login,setLogin]=useState(false)
   const [user,setUser]=useState(undefined)
+  const [isAdmin,setIsAdmin]=useState(false)
 
   useEffect(()=>{
     setLogin(isLoggedIn())
     setUser(getCurrentUserDetail())
+    if("ROLE_ADMIN"===user?.roles[0]?.name){
+      console.log("You are admin!")
+      setIsAdmin(true)
+    }else{
+      console.log("You are not admin!")
+    }
   },[login])
 
   const logout=()=>{
     doLogout(()=>{
       //logged out
       setLogin(false)
+      setIsAdmin(false)
       userContextData.setUser({
         data: null,
         login: false
@@ -92,7 +100,10 @@ import { useContext } from 'react';
               {
                 login && (
                   <>
-                 
+                  {isAdmin && (<NavItem className='mx-3'>
+                  <NavLink tag={ReactLink} to="/user/admin/home">Admin</NavLink>
+                  </NavItem >)}
+                  
                   <NavItem className='mx-3'>
                   <NavLink onClick={logout}>Logout</NavLink>
                   </NavItem >

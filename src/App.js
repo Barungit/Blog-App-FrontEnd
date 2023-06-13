@@ -16,6 +16,7 @@ import UserProvider from './context/UserProvider';
 import Categories from './pages/Categories';
 import MyBlogs from './pages/user_pages/MyBlogs';
 import UpdateBlog from './pages/UpdateBlog';
+import AdminPage from './pages/user_pages/AdminPage';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
         <Route path='profile_info' element={<Profile_info />}/>
         <Route path='myblogs' element={<MyBlogs />}/>
         <Route path='update_blog/:bid' element={<UpdateBlog />}/>
+        <Route path='admin/home' element={<AdminPage />} />
       </Route>
 
       </Routes>

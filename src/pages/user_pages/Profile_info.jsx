@@ -72,6 +72,7 @@ const Profile_info = () => {
     console.log(formData)
     updateUserDetails(formData,local.user.uid).then(data => {
       console.log(data);
+      toast.success("User Data Updated!!")
     }).catch(error=>{
       toast.error("Error in updating post!")
    console.log(error)
