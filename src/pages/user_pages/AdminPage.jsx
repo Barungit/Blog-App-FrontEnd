@@ -1,59 +1,93 @@
 import React, { useContext } from 'react'
 import Base from '../../Components/Base'
-import { Nav, NavItem, NavLink } from 'reactstrap'
+import { Button, Card, CardText, CardTitle, Col, Nav, NavItem, NavLink, Row, TabContent, TabPane } from 'reactstrap'
 import { useState } from 'react'
 import { useEffect } from 'react'
-
+import classnames from 'classnames';
 import userContext from '../../context/userContext'
+import { checkAdmin, getCurrentUserDetail } from '../../auth'
+import ManageCategories from './ManageCategories'
 
 
 function AdminPage() {
-  const [isAdmin,setIsAdmin]=useState(false)
-  const value = useContext(userContext);
   useEffect(()=>{
-    if("ROLE_ADMIN"===value?.user?.data?.user?.roles[0]?.name){
+      if(checkAdmin()){
       console.log("You are admin!")
-      setIsAdmin(true)
     }else{
       console.log("You are not admin!");
       
     }
   },[])
+
+  const [activeTab, setActiveTab] = useState('1');
+
+  const toggle = tab => {
+    if(activeTab !== tab) setActiveTab(tab);
+  }
+
   return (
     <>
-    
-    {isAdmin && (<Base><h1>Hello! ADMIN!</h1>
-    <Nav
-  justified
-  pills
->
-  <NavItem>
-    <NavLink
-      active
-      href="#"
-    >
-      Link
-    </NavLink>
-  </NavItem>
-  <NavItem>
-    <NavLink href="#">
-      Much Longer Nav Link
-    </NavLink>
-  </NavItem>
-  <NavItem>
-    <NavLink href="#">
-      Another Link
-    </NavLink>
-  </NavItem>
-  <NavItem>
-    <NavLink
-      disabled
-      href="#"
-    >
-      Disabled Link
-    </NavLink>
-  </NavItem>
-</Nav>
+
+    {checkAdmin() && (<Base><h1>Hello! ADMIN!</h1>
+    <div>
+  <Nav tabs>
+    <NavItem>
+      <NavLink
+        className={classnames({ active: activeTab === '1' })}
+        onClick={() => { toggle('1'); }}
+      >
+        Categories
+      </NavLink>
+    </NavItem>
+    <NavItem>
+      <NavLink
+        className={classnames({ active: activeTab === '2' })}
+        onClick={() => { toggle('2'); }}
+      >
+        Users
+      </NavLink>
+    </NavItem>
+  </Nav>
+  <TabContent activeTab={activeTab}>
+    <TabPane tabId="1">
+      <Row>
+        <Col sm="12">
+          <ManageCategories />
+        </Col>
+      </Row>
+    </TabPane>
+    <TabPane tabId="2">
+      <Row>
+        <Col sm="6">
+          <Card body>
+            <CardTitle>
+              Special Title Treatment
+            </CardTitle>
+            <CardText>
+              With supporting text below as a natural lead-in to additional content.
+            </CardText>
+            <Button>
+              Go somewhere
+            </Button>
+          </Card>
+        </Col>
+        <Col sm="6">
+          <Card body>
+            <CardTitle>
+              Special Title Treatment
+            </CardTitle>
+            <CardText>
+              With supporting text below as a natural lead-in to additional content.
+            </CardText>
+            <Button>
+              Go somewhere
+            </Button>
+          </Card>
+        </Col>
+      </Row>
+    </TabPane>
+  </TabContent>
+</div>
 </Base>)}
 </>
     

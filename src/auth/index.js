@@ -37,3 +37,20 @@ export const getToken=()=>{
         return null;
     }
 }
+
+//check admin
+export const checkAdmin=()=>{
+    if(isLoggedIn()){
+        var x= JSON.parse(localStorage.getItem("data")).user;
+        if(x.roles[0].id == 1){
+            console.log(x.roles[0].id);
+            return true;
+        }
+        else{
+            return false;
+        }
+        
+    } else {
+        return undefined;
+    }
+}
