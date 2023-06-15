@@ -14,10 +14,11 @@ function Services() {
           <Base>
           
             <div>
+              
               <h1>This is services page.</h1>
-              <h3>Welcome : {object.user.login && object.user.data.user.name}</h3>
-              <h5>ID : {object.user.data.user.uid}</h5>
-              <h4>Role : {object.user.data.user.roles[0].name}</h4>
+              <h3>Welcome : {object?.user?.login && object?.user?.data?.user?.name}</h3>
+              <h5>ID : {object?.user?.data?.user?.uid}</h5>
+              <h4>Role : {object?.user?.data?.user?.roles[0]?.name}</h4>
               <h6>{"myObjectString"}</h6>
               
             </div>

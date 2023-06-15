@@ -51,6 +51,7 @@ const Profile_info = () => {
   const fieldChanged=(event)=>{
     
     setFormData({...formData,[event.target.name]:event.target.value});
+    console.log(formData)
 };
 
   //take data of form 

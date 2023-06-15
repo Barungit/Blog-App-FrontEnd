@@ -17,6 +17,7 @@ import {
 import { doLogout, getCurrentUserDetail, isLoggedIn } from '../auth';
 import userContext from '../context/userContext';
 import { useContext } from 'react';
+import CheckTokenExpiration from './CheckTokenExpiration';
 
  const CustomNavBar2 = () => {
   const userContextData = useContext(userContext);
@@ -52,8 +53,9 @@ import { useContext } from 'react';
 
     return (
       <div>
-       
+       <CheckTokenExpiration />
         <Navbar 
+        
           color="dark" 
           dark expand={"sm"} 
           fixed=""
