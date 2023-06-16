@@ -15,19 +15,43 @@ import {
   ListGroupItem,
   ListGroupItemHeading,
   ListGroupItemText,
+  Modal,
+  ModalBody,
+  ModalHeader,
 } from "reactstrap";
-import { loadAllCategories, updateCategory } from "../../services/category-service";
+import { addCategory, deleteCategory, loadAllCategories, updateCategory } from "../../services/category-service";
 import { toast } from "react-toastify";
 import IconButton from "../../Components/IconButton";
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare, faPlus, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import AddCategory from "../../Components/AddCategory";
 
 function ManageCategories() {
   const [categories, SetCategories] = useState([]);
+  const [showAddDialog, setShowAddDialog] = useState(false);
   const [updatedCategory,SetUpdatedCategory] = useState({
     categoryTitle : '',
     categoryDescription : ''
   })
   
+  const handleAddClick = () => {
+    setShowAddDialog(true);
+  };
+  const handleAddCategorySubmit = (category) => {
+    addCategory(category).then((data)=>{
+      console.log(data);
+      toast.success("New Category Added");
+    }).catch((error) => {
+      console.log(error);
+      toast.error("Error in creating new Category");
+    });
+
+    // Update the state with the new category
+  SetCategories([...categories, category]);
+
+  // Close the dialog
+  setShowAddDialog(false);
+  }
+
   const [editModes, setEditModes] = useState(
     new Array(categories.length).fill(false)
   );
@@ -81,12 +105,21 @@ function ManageCategories() {
    console.log(error)
    })
   };
-
-
-
+  
   const handleInputChange = (event) => {
     SetUpdatedCategory({...updatedCategory,[event.target.name]:event.target.value});
     console.log(updatedCategory)
+  };
+
+  const handleDeleteClick = (cid) => {
+    deleteCategory(cid).then(data =>{
+      console.log(data);
+      toast.success("Category Deleted!")
+      SetCategories(categories.filter(cat => cat.categoryId !== cid));
+    }).catch(error=>{
+      toast.error("Error in deleting category!")
+      console.log(error)
+    })
   };
   return (
     <div>
@@ -95,8 +128,13 @@ function ManageCategories() {
           <CardTitle>
             <h4>
               Manage Categories Here : You can do many things like add, delete
-              and update!
+              and update! <IconButton
+                          className="mx-3"
+                          icon={faPlus}
+                          onClick={() => handleAddClick()}
+                        />
             </h4>
+            
           </CardTitle>
           <ListGroup>
             {categories &&
@@ -150,7 +188,7 @@ function ManageCategories() {
                           <Button
                             className="mx-3"
                             color="danger"
-                            // onClick={() => handleDeleteClick(index)}
+                            onClick={() => handleDeleteClick(cat.categoryId)}
                           >
                             Delete
                           </Button>
@@ -163,6 +201,17 @@ function ManageCategories() {
           </ListGroup>
         </CardBody>
       </Container>
+      {showAddDialog && (
+      <Modal isOpen={true} toggle={() => setShowAddDialog(false)}>
+        <ModalHeader>Add Category</ModalHeader>
+        <ModalBody>
+          <AddCategory
+            onSubmit={(category) => handleAddCategorySubmit(category)}
+            onCancel={() => setShowAddDialog(false)}
+          />
+        </ModalBody>
+      </Modal>
+    )}
     </div>
   );
 }

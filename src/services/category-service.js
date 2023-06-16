@@ -10,3 +10,11 @@ export const updateCategory=(category,categoryId)=>{
     console.log(categoryId)
     return privateAxios.put(`/categories/${categoryId}`,category).then(response=>{return response.data});
 }
+
+export const deleteCategory = (categoryId) =>{
+    return privateAxios.delete(`/categories/${categoryId}`).then((res) => res.data);
+}
+
+export const addCategory = (category) => {
+    return privateAxios.post(`/categories/`,category).then(response=>{return response.data});
+}
