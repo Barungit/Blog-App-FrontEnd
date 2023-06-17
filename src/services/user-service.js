@@ -23,3 +23,8 @@ export const updateUserDetails=(user,uid)=>{
     console.log(uid)
     return privateAxios.put(`/users/${uid}`,user).then(response=>{return response.data});
 }
+
+//delete user
+export const deleteUser= (uid) => {
+    return privateAxios.delete(`/users/${uid}`).then(response=>{return response.data});
+}

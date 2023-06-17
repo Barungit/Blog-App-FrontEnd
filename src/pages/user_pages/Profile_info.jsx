@@ -16,11 +16,17 @@ import {
 import UserhorizontalList from "../../Components/UserhorizontalList";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import IconButton from "../../Components/IconButton";
-import { updateUserDetails } from "../../services/user-service";
+import { deleteUser, updateUserDetails } from "../../services/user-service";
 import { toast } from "react-toastify";
+import { Navigate, useNavigate } from "react-router-dom";
+import { doLogout } from "../../auth";
+import { useContext } from "react";
+import userContext from "../../context/userContext";
 
 const Profile_info = () => {
+  const userContextData = useContext(userContext);
   const [disabled, setDisabled] = useState(true);
+  let navigate = useNavigate()
   const [formData,setFormData] = useState({
     name:'',
     about:'',
@@ -79,6 +85,32 @@ const Profile_info = () => {
    console.log(error)
    })
   }
+const handleDelete = () =>{
+  console.log("DElete : " + local.user.uid);
+  deleteUser(local.user.uid).then((data)=>{
+    navigate("/")
+    console.log(data);
+    toast.success("Your Account is Deleted Successfullly!")
+    logout();
+    }
+  ).catch(error=>{
+    toast.error("Error in deleteing!")
+ console.log(error)
+}
+  )
+}
+
+const logout=()=>{
+  doLogout(()=>{
+    //logged out
+    userContextData.setUser({
+      data: null,
+      login: false
+    })
+    
+  })
+}
+
   const local = JSON.parse(localStorage.getItem("data"));
   return (
     <Base>
@@ -88,7 +120,7 @@ const Profile_info = () => {
           <Card>
             <CardTitle className="my-2">
               <h3>
-                <center>{local.user.name}</center>
+                <center>{local?.user?.name}</center>
               </h3>
             </CardTitle>
             <hr />
@@ -108,7 +140,7 @@ const Profile_info = () => {
                         type="text"
                         name="name"
                         id="nameField"
-                        defaultValue={local.user.name}
+                        defaultValue={local?.user?.name}
                         disabled={disabled}
                         onChange={fieldChanged}
     
@@ -125,7 +157,7 @@ const Profile_info = () => {
                         type="textarea"
                         name="about"
                         id="aboutField"
-                        defaultValue={local.user.about}
+                        defaultValue={local?.user?.about}
                         disabled={disabled}
                         onChange={fieldChanged}
                       />
@@ -141,15 +173,18 @@ const Profile_info = () => {
                         type="number"
                         name="phone"
                         id="phoneField"
-                        defaultValue={local.user.phone}
+                        defaultValue={local?.user?.phone}
                         disabled={disabled}
                         onChange={fieldChanged}
                       />
                     </Col>
                     
                   </Row>
-                  <Button type="submit" className="my-3" color="info" onClick={handleSumbit}>
+                  <Button type="submit" className="my-3 mx-3" color="info" onClick={handleSumbit}>
                     Update Profile
+                  </Button>
+                  <Button className="my-3 mx-3" color="danger" onClick={handleDelete}>
+                    Delete Profile
                   </Button>
                 </Form>
               </div>
