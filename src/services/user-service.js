@@ -28,3 +28,8 @@ export const updateUserDetails=(user,uid)=>{
 export const deleteUser= (uid) => {
     return privateAxios.delete(`/users/${uid}`).then(response=>{return response.data});
 }
+
+//get all user
+export const getAllUsers=()=>{
+    return privateAxios.get(`/users/`).then(response=>{return response.data});
+}
