@@ -10,6 +10,7 @@ import { toast } from 'react-toastify'
 import { isLoggedIn } from '../auth'
 
 function PostPage() {
+  const local = JSON.parse(localStorage.getItem("data"));
 const [comment,setComment]=useState({
   content:''
 })    
@@ -37,14 +38,16 @@ const [post,setPost]=useState(null)
       if(comment.content.trim()===''){
         return
       }
-      createComment(comment,post.bid)
+      console.log("Here is " + local.user.uid)
+      createComment(comment,post.bid,local.user.uid)
       .then(data=>{
         console.log(data)
         toast.success('You commented on this blog!')
         setPost({
           ...post,
-          comments:[...post.comments,data.data]
+          comments:[...post.comments,data]
         })
+        console.log(post)
         setComment({
           content:''
         })
@@ -102,7 +105,7 @@ const [post,setPost]=useState(null)
       {
         post?.comments && post.comments.map((c,id)=>(
           <Card className='mt-2 border-0' key={id}>
-            <span className='border primary rounded-pill' >Barun:</span> 
+            <span className='border primary rounded-pill' >{c?.commentAuthor}</span> 
             <CardBody className='d-flex justify-content-between'>
               <CardText>
                 {c?.content} on 

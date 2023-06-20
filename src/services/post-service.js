@@ -22,8 +22,8 @@ export const createPost=(postData)=>{
  };
 
  //add comment
- export const createComment=(comment,bid)=>{
-   return privateAxios.post(`/blog/${bid}/comments`,comment).then(response=>response.data);;
+ export const createComment=(comment,bid,uid)=>{
+   return privateAxios.post(`/blog/${bid}/comments/${uid}`,comment).then(response=>response.data);;
  }
 
  //upload post image
