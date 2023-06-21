@@ -17,6 +17,7 @@ import Categories from './pages/Categories';
 import MyBlogs from './pages/user_pages/MyBlogs';
 import UpdateBlog from './pages/UpdateBlog';
 import AdminPage from './pages/user_pages/AdminPage';
+import Search from './pages/Search';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
       <Route path='/services' element={<Services />}/>
       <Route path='/blogs/:bid' element={<PostPage />}/>
       <Route path='/categories/:categoryId' element={<Categories />}/>
+      <Route path='/blogs/search/:keywords' element={<Search />}/>
 
       <Route path="/user" element={<Privateroute />}>
         <Route path='dashboard' element={<Userdashboard />}/>

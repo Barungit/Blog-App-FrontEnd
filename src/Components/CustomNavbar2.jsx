@@ -13,7 +13,12 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem, 
-  NavbarText} from 'reactstrap';
+  NavbarText,
+  Form,
+  Input,
+  Button,
+  Row,
+  Col} from 'reactstrap';
 import { doLogout, getCurrentUserDetail, isLoggedIn } from '../auth';
 import userContext from '../context/userContext';
 import { useContext } from 'react';
@@ -26,6 +31,7 @@ import CheckTokenExpiration from './CheckTokenExpiration';
   const [login,setLogin]=useState(false)
   const [user,setUser]=useState(undefined)
   const [isAdmin,setIsAdmin]=useState(false)
+  const [keywords, setKeywords]=useState("")
 
   useEffect(()=>{
     setLogin(isLoggedIn())
@@ -49,6 +55,13 @@ import CheckTokenExpiration from './CheckTokenExpiration';
       })
       navigate("/")
     })
+  }
+
+  const handleSearch=(event)=>{
+    event.preventDefault();
+    console.log(keywords)
+    navigate("/blogs/search/"+keywords)
+    setKeywords("");
   }
 
     return (
@@ -98,6 +111,18 @@ import CheckTokenExpiration from './CheckTokenExpiration';
               </UncontrolledDropdown>
             </Nav>
             <Nav navbar>
+
+              {/* seach bar in nav bar */}
+              <Nav>
+                <Form onSubmit={handleSearch}>
+                  <Row>
+                    <Col><Input style={{width:"350px"}} type='text' placeholder='Search here...' onChange={(event)=> {setKeywords(event.target.value)}} value={keywords}></Input></Col>
+                    <Col><Button type='submit' >Search</Button></Col>
+                  </Row>
+                  
+                  
+                </Form>
+              </Nav>
             
               {
                 login && (

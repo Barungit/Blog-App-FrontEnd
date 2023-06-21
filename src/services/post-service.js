@@ -48,6 +48,11 @@ export const createPost=(postData)=>{
    return privateAxios.get(`/user/${uid}/blogs?pageNumber=${pageNumber}&pageSize=${pageSize}`).then(res=>res.data)
  }
 
+ //get  posts by search
+ export const loadPostbySearch = (keyword,pageNumber,pageSize)=>{
+  return myAxios.get(`/blogs/search/${keyword}?pageNumber=${pageNumber}&pageSize=${pageSize}`).then(response=>response.data);
+ }
+
  //delete a blog
  export function deletePostService(bid) {
   return privateAxios.delete(`/blogs/${bid}`).then((res) => res.data);
