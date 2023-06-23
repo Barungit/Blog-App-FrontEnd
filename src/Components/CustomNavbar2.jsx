@@ -84,7 +84,7 @@ import CheckTokenExpiration from './CheckTokenExpiration';
           <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
           <NavItem className='mx-3'>
-          <NavLink tag={ReactLink} to="/">New Feeds</NavLink>
+          <NavLink tag={ReactLink} to="/blogs">New Feeds</NavLink>
             </NavItem>
             <NavItem className='mx-3'>
                 <NavLink tag={ReactLink} to="/about">About</NavLink>

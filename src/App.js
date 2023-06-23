@@ -18,6 +18,7 @@ import MyBlogs from './pages/user_pages/MyBlogs';
 import UpdateBlog from './pages/UpdateBlog';
 import AdminPage from './pages/user_pages/AdminPage';
 import Search from './pages/Search';
+import AllBlogs from './pages/AllBlogs';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
       <Route path='/' element={<Home />}/>
       <Route path='/about' element={<About />}/>
       <Route path='/login' element={<Login />}/>
+      <Route path='/blogs' element={<AllBlogs />}/>
       <Route path='/signup' element={<Signup />}/>
       <Route path='/services' element={<Services />}/>
       <Route path='/blogs/:bid' element={<PostPage />}/>
