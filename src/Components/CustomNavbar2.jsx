@@ -138,7 +138,7 @@ import CheckTokenExpiration from './CheckTokenExpiration';
                   <NavLink tag={ReactLink} to="/user/profile_info">{user.name}</NavLink>
                   </NavItem >
                   <NavItem className='mx-3'>
-                  <NavLink tag={ReactLink} to="/user/dashboard">{user.email}</NavLink>
+                  <NavLink tag={ReactLink} to="/user/dashboard">Post</NavLink>
                   </NavItem >
                   </>
                 )

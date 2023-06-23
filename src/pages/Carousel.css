@@ -22,3 +22,14 @@
   .hp_carou{
     height: 500px;
   }
+  .my-font {
+    font-family: 'Papyrus';
+  }
+
+  .my-button {
+    font-size: 24px;
+    color: white;
+    background-color: #4CAF50;
+    border: none;
+    padding: 10px 20px;
+  }
