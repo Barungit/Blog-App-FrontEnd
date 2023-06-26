@@ -11,6 +11,7 @@ const About=()=> {
                    
                     <h1>Hi,Welcome {object?.user?.login && object?.user?.data?.user?.name}!</h1>
                     <h1>This is About page!</h1>
+                    <marquee>Welcome to the Fun learn</marquee>
                 </div>
                 </Base>
             )}
