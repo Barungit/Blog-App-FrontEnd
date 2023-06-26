@@ -11,8 +11,12 @@ import {
   CardTitle,
   Col,
   Container,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
   Input,
   Row,
+  UncontrolledDropdown,
 } from "reactstrap";
 import { useEffect } from "react";
 import { createComment, loadPost } from "../services/post-service";
@@ -20,6 +24,9 @@ import { useState } from "react";
 import { BASE_URL } from "../services/helper";
 import { toast } from "react-toastify";
 import { isLoggedIn } from "../auth";
+import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
+import IconButton from "../Components/IconButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function PostPage() {
   const local = JSON.parse(localStorage.getItem("data"));
@@ -70,6 +77,15 @@ function PostPage() {
         console.log(error);
       });
   };
+
+  const editComment=(event)=>{
+    console.log("edit");
+    console.log(event);
+  }
+  const deleteComment=(event)=>{
+    console.log("DElete");
+    console.log(event);
+  }
 
   return (
     <Base>
@@ -146,9 +162,22 @@ function PostPage() {
                   </span><span >{printDate(c?.commentDate)}</span>
                   </div>
                   
-                  <CardBody>
+                  <CardBody style={{ display: 'flex', justifyContent: 'space-between'}}>
                     <p  className="overflow-auto">{c?.content} on</p>
-                    
+                    <UncontrolledDropdown>
+      <DropdownToggle>
+      <FontAwesomeIcon icon={faEllipsisVertical}/>
+      </DropdownToggle>
+      <DropdownMenu>
+        <DropdownItem onClick={(event)=>editComment(c.id)}>
+          Edit
+        </DropdownItem>
+        <DropdownItem divider />
+        <DropdownItem onClick={(event)=>deleteComment(c.id)}>
+          Delete
+        </DropdownItem>
+      </DropdownMenu>
+    </UncontrolledDropdown>
                   </CardBody>
                 </Card>
               ))}
