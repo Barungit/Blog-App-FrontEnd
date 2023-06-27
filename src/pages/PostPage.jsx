@@ -19,7 +19,7 @@ import {
   UncontrolledDropdown,
 } from "reactstrap";
 import { useEffect } from "react";
-import { createComment, loadPost } from "../services/post-service";
+import { createComment, loadPost, deleteComment as dC } from "../services/post-service";
 import { useState } from "react";
 import { BASE_URL } from "../services/helper";
 import { toast } from "react-toastify";
@@ -84,7 +84,17 @@ function PostPage() {
   }
   const deleteComment=(event)=>{
     console.log("DElete");
-    console.log(event);
+    dC(event).then((data)=>{
+      console.log(data);
+      setPost({
+        ...post,
+        comments: post.comments.filter(comment => comment.id !== event)
+      });
+      // SetCategories(categories.filter(cat => cat.categoryId !== cid));
+      toast.success("Comment deleted Successfully");
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 
   return (
@@ -163,8 +173,8 @@ function PostPage() {
                   </div>
                   
                   <CardBody style={{ display: 'flex', justifyContent: 'space-between'}}>
-                    <p  className="overflow-auto">{c?.content} on</p>
-                    <UncontrolledDropdown>
+                    <p  className="overflow-auto">{c?.content} </p>
+                  { isLoggedIn()  && local.user.uid==c.userId && (<UncontrolledDropdown>
       <DropdownToggle>
       <FontAwesomeIcon icon={faEllipsisVertical}/>
       </DropdownToggle>
@@ -177,7 +187,7 @@ function PostPage() {
           Delete
         </DropdownItem>
       </DropdownMenu>
-    </UncontrolledDropdown>
+    </UncontrolledDropdown> )}
                   </CardBody>
                 </Card>
               ))}
