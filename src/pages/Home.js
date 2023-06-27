@@ -114,6 +114,7 @@ const Home = () => {
                 <a href="" class="navbar-brand font-weight-bold text-primary m-0 mb-4 p-0" style={{fontsize: 40, lineheight: 40}}>
                     <i class="flaticon-043-teddy-bear"></i>
                     <span class="text-white">KidKinder</span>
+
                 </a>
                 <p>Labore dolor amet ipsum ea, erat sit ipsum duo eos. Volup amet ea dolor et magna dolor, elitr rebum duo est sed diam elitr. Stet elitr stet diam duo eos rebum ipsum diam ipsum elitr.</p>
                 <div class="d-flex justify-content-start mt-4">
@@ -147,7 +148,7 @@ const Home = () => {
                     <h4 class="fa fa-phone-alt text-primary"></h4>
                     <div class="pl-3">
                         <h5 class="text-white">Phone</h5>
-                        <p>+012 345 67890</p>
+                        <p>+91 9135340191 ,9835372340,7903747995,9304009103</p>
                     </div>
                 </div>
             </div>
