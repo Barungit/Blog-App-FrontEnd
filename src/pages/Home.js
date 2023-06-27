@@ -69,8 +69,8 @@ const Home = () => {
                 className="img-fluid"
                 src="https://picsum.photos/900/180"
                 style={{
-                  height: 500,
-                  borderRadius: 60,
+                  height: 100,
+                  borderRadius: 50,
                 }}
                 alt=""
               />
@@ -133,7 +133,7 @@ const Home = () => {
                     <h4 class="fa fa-map-marker-alt text-primary"></h4>
                     <div class="pl-3">
                         <h5 class="text-white">Address</h5>
-                        <p>123 Street, New York, USA</p>
+                        <p>Kargil Chowk Patna Science College</p>
                     </div>
                 </div>
                 <div class="d-flex">
