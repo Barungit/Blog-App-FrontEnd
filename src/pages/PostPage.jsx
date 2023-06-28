@@ -14,12 +14,17 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
+  Form,
   Input,
+  Label,
+  Modal,
+  ModalBody,
+  ModalHeader,
   Row,
   UncontrolledDropdown,
 } from "reactstrap";
 import { useEffect } from "react";
-import { createComment, loadPost, deleteComment as dC } from "../services/post-service";
+import { createComment, loadPost, deleteComment as dC, updateComment } from "../services/post-service";
 import { useState } from "react";
 import { BASE_URL } from "../services/helper";
 import { toast } from "react-toastify";
@@ -33,8 +38,27 @@ function PostPage() {
   const [comment, setComment] = useState({
     content: "",
   });
+  const [updatedComment, setUpdateComment] = useState({
+    content: "",
+  });
   const { bid } = useParams();
   const [post, setPost] = useState(null);
+  const [showAddDialog, setShowAddDialog] = useState({
+    open : false,
+    id: 0,
+    content:""
+  });
+  const [updateButton,setUpdateButton] = useState(false)
+
+  // const handleAddCategorySubmit = (category) => {
+  //   addCategory(category).then((data)=>{
+  //     console.log(data);
+  //     toast.success("New Category Added");
+  //   }).catch((error) => {
+  //     console.log(error);
+  //     toast.error("Error in creating new Category");
+  //   });
+
 
   useEffect(() => {
     //load the post
@@ -60,10 +84,12 @@ function PostPage() {
       return;
     }
     console.log("Here is " + local.user.uid);
+
     createComment(comment, post.bid, local.user.uid)
       .then((data) => {
         console.log(data);
         toast.success("You commented on this blog!");
+        
         setPost({
           ...post,
           comments: [...post.comments, data],
@@ -79,9 +105,49 @@ function PostPage() {
   };
 
   const editComment=(event)=>{
-    console.log("edit");
-    console.log(event);
+    setShowAddDialog({
+      open: true,
+      id: event.id,
+      content: event.content
+    });
+    
   }
+
+  const handleEditedComment=(e)=>{
+    setUpdateComment({
+      content:e.target.value
+    })
+   
+    setUpdateButton(true);
+
+  }
+  const handleSubmitofEditComment=(e)=>{
+    e.preventDefault();
+    if (updatedComment.content.trim() === "") {
+      toast.warning("Comment Cannot be empty!")
+      return;
+    }
+    updateComment(showAddDialog.id,updatedComment).then((data)=>{
+      console.log(data);
+      const updatedComments = post.comments.map((c) => {
+        if (c.id === showAddDialog.id) {
+          return data; // Replace the comment with updated data
+        }
+        return c; // Keep other comments unchanged
+      });
+  
+      setPost({
+        ...post,
+        comments: updatedComments,
+      });
+      setShowAddDialog(false)
+      toast.success("Comment updated Successfully");
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+  
+
   const deleteComment=(event)=>{
     console.log("DElete");
     dC(event).then((data)=>{
@@ -179,7 +245,7 @@ function PostPage() {
       <FontAwesomeIcon icon={faEllipsisVertical}/>
       </DropdownToggle>
       <DropdownMenu>
-        <DropdownItem onClick={(event)=>editComment(c.id)}>
+        <DropdownItem onClick={(event)=>editComment(c)}>
           Edit
         </DropdownItem>
         <DropdownItem divider />
@@ -208,6 +274,25 @@ function PostPage() {
             </Card>
           </Col>
         </Row>
+        {showAddDialog.open && (
+      <Modal isOpen={true} toggle={() => setShowAddDialog(false)}>
+        <ModalHeader>Update Comment</ModalHeader>
+        <ModalBody>
+         <Form onSubmit={handleSubmitofEditComment}>
+          <Label for="new comment">Edit Comment : {showAddDialog.id}</Label>
+          <Input
+          type="textarea"
+          id="new comment"
+          defaultValue={showAddDialog.content}
+          // value={}
+           onChange={handleEditedComment}
+        />
+        {updateButton && (<Button type="submit" color="primary">Update</Button>)}
+        <Button type="button" className="my-2" color="secondary" onClick={() => setShowAddDialog(false)}>Cancel</Button>
+         </Form>
+        </ModalBody>
+      </Modal>
+    )}
       </Container>
     </Base>
   );

@@ -30,6 +30,10 @@ export const createPost=(postData)=>{
  export const deleteComment=(cid)=>{
   return privateAxios.delete(`/comments/${cid}`).then(response=>response.data);
  }
+ //update comment
+ export const updateComment=(cid,comment)=>{
+  return privateAxios.put(`/comments/${cid}`,comment).then(response=>response.data);
+ }
 
  //upload post image
  export const uploadPostImage=(bid, image)=>{

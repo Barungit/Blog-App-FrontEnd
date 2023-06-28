@@ -69,8 +69,8 @@ const Home = () => {
                 className="img-fluid"
                 src="https://picsum.photos/900/180"
                 style={{
-                  height: 100,
-                  borderRadius: 50,
+                  height: 450,
+                  borderRadius: 300,
                 }}
                 alt=""
               />
