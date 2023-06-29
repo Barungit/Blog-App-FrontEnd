@@ -3,6 +3,7 @@ import Base from "../Components/Base";
 import NewFeed from "../Components/NewFeed";
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.css';
+import { faGoogle, faInstagram, faTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import './Carousel.css';
 
 import {
@@ -24,6 +25,9 @@ import { loadAllPost } from "../services/post-service";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { BASE_URL } from "../services/helper";
+import { faAddressCard, faMailBulk, faMobileScreen, faPhone, faWalkieTalkie } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Footer from "../Components/Footer";
 
 const Home = () => {
   const [carouselItems, setCarouselItems] = useState([]);
@@ -43,7 +47,7 @@ const Home = () => {
   };
   return (
     <Base>
-      <div>
+      
         <div className="container-fluid bg-primary  ">
           <Row>
             <Col className="  mx-5 d-flex justify-content-center ">
@@ -78,7 +82,7 @@ const Home = () => {
             </Col>
           </Row>
         </div>
-        <Row><Col className="carousel-col">
+        <Row className="my-4 mx-4"><Col >
         <Carousel  showThumbs={false} // Disable thumbnail navigation
         showIndicators={true} // Show indicators
         infiniteLoop={true} // Enable infinite loop
@@ -87,7 +91,7 @@ const Home = () => {
         transitionTime={500} // Set the transition duration (in milliseconds)
         emulateTouch={true} // Enable touch swipe // Stop auto-play on hover
         stopOnHover={true}
-        className="custom-carousel"
+        className="custom-carousel border border-dark "
          >
         {carouselItems.map((item) => (
           <div key={item.key} className="carousel-card" >
@@ -96,7 +100,7 @@ const Home = () => {
             <CardImg top src={BASE_URL+ '/blogs/image/' + item.picname} alt={item.altText} onError={handleImageError} />
             <CardImgOverlay >
               <CardTitle className="display-4">{item.title}</CardTitle>
-              <CardText className="text-muted" dangerouslySetInnerHTML={{__html:item.content.substring(0,500)}}/>
+              {/* <CardText className="text-muted" dangerouslySetInnerHTML={{__html:item.content.substring(0,5000)}}/> */}
               <CardSubtitle className="legend">{item.category.categoryTitle}</CardSubtitle>
               
             </CardImgOverlay>
@@ -107,73 +111,7 @@ const Home = () => {
       </Carousel>
       </Col>
         </Row>
-        <Row>
-        <div class="container-fluid bg-secondary text-white mt-5 py-5 px-sm-3 px-md-5">
-        <div class="row pt-5">
-            <div class="col-lg-3 col-md-6 mb-5">
-                <a href="" class="navbar-brand font-weight-bold text-primary m-0 mb-4 p-0" style={{fontsize: 40, lineheight: 40}}>
-                    <i class="flaticon-043-teddy-bear"></i>
-                    <span class="text-white">KidKinder</span>
-
-                </a>
-                <p>Labore dolor amet ipsum ea, erat sit ipsum duo eos. Volup amet ea dolor et magna dolor, elitr rebum duo est sed diam elitr. Stet elitr stet diam duo eos rebum ipsum diam ipsum elitr.</p>
-                <div class="d-flex justify-content-start mt-4">
-                    {/* <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
-                        style="width: 38px; height: 38px;" href="#"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
-                        style="width: 38px; height: 38px;" href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
-                        style="width: 38px; height: 38px;" href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a class="btn btn-outline-primary rounded-circle text-center mr-2 px-0"
-                        style="width: 38px; height: 38px;" href="#"><i class="fab fa-instagram"></i></a> */}
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h3 class="text-primary mb-4">Get In Touch</h3>
-                <div class="d-flex">
-                    <h4 class="fa fa-map-marker-alt text-primary"></h4>
-                    <div class="pl-3">
-                        <h5 class="text-white">Address</h5>
-                        <p>Kargil Chowk Patna Science College</p>
-                    </div>
-                </div>
-                <div class="d-flex">
-                    <h4 class="fa fa-envelope text-primary"></h4>
-                    <div class="pl-3">
-                        <h5 class="text-white">Email</h5>
-                        <p>info@example.com</p>
-                    </div>
-                </div>
-                <div class="d-flex">
-                    <h4 class="fa fa-phone-alt text-primary"></h4>
-                    <div class="pl-3">
-                        <h5 class="text-white">Phone</h5>
-                        <p>+91 9135340191 ,9835372340,7903747995,9304009103</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-5">
-                <h3 class="text-primary mb-4">Quick Links</h3>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>About Us</a>
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our Classes</a>
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our Teachers</a>
-                    <a class="text-white mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our Blog</a>
-                    <a class="text-white" href="#"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid pt-5" >
-            <p class="m-0 text-center text-white">
-                &copy; <a class="text-primary font-weight-bold" href="#">Your Site Name</a>. All Rights Reserved. Designed
-                by
-                <a class="text-primary font-weight-bold" href="https://htmlcodex.com">HTML Codex</a>
-            </p>
-        </div>
-    </div>
-        </Row>
-      </div>
+       
     </Base>
   );
 };

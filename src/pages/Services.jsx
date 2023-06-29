@@ -1,32 +1,31 @@
-import React from 'react'
-import Base from '../Components/Base'
-import userContext from '../context/userContext'
+import React from "react";
+import Base from "../Components/Base";
+import userContext from "../context/userContext";
+import { Row } from "reactstrap";
+import Footer from "../Components/Footer";
 
 function Services() {
- // const myObjectString = localStorage.getItem();
- // Loop through all keys in the local storage
- 
+  // const myObjectString = localStorage.getItem();
+  // Loop through all keys in the local storage
+
   return (
-    
     <userContext.Consumer>
-      {
-        (object) => (
-          <Base>
+      {(object) => (
+        <Base>
+          <div>
+            <h1>This is services page.</h1>
+            <h3>
+              Welcome : {object?.user?.login && object?.user?.data?.user?.name}
+            </h3>
+            <h5>ID : {object?.user?.data?.user?.uid}</h5>
+            <h4>Role : {object?.user?.data?.user?.roles[0]?.name}</h4>
+            <h6>{"myObjectString"}</h6>
+          </div>
           
-            <div>
-              
-              <h1>This is services page.</h1>
-              <h3>Welcome : {object?.user?.login && object?.user?.data?.user?.name}</h3>
-              <h5>ID : {object?.user?.data?.user?.uid}</h5>
-              <h4>Role : {object?.user?.data?.user?.roles[0]?.name}</h4>
-              <h6>{"myObjectString"}</h6>
-              
-            </div>
         </Base>
-        )
-      }
+      )}
     </userContext.Consumer>
-  )
+  );
 }
 
-export default Services
+export default Services;

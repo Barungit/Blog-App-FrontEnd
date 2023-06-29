@@ -19,10 +19,13 @@ import UpdateBlog from './pages/UpdateBlog';
 import AdminPage from './pages/user_pages/AdminPage';
 import Search from './pages/Search';
 import AllBlogs from './pages/AllBlogs';
+import { Row } from 'reactstrap';
+import Footer from './Components/Footer';
 
 
 function App() {
   return (
+    <div>
     <UserProvider>
     <BrowserRouter>
     <ToastContainer position='bottom-center' />
@@ -48,6 +51,9 @@ function App() {
       </Routes>
     </BrowserRouter>
     </UserProvider>
+     <Footer />
+
+</div>
   );
 }
 

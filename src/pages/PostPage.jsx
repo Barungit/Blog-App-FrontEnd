@@ -28,7 +28,7 @@ import { createComment, loadPost, deleteComment as dC, updateComment } from "../
 import { useState } from "react";
 import { BASE_URL } from "../services/helper";
 import { toast } from "react-toastify";
-import { isLoggedIn } from "../auth";
+import { checkAdmin, isLoggedIn } from "../auth";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import IconButton from "../Components/IconButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -240,7 +240,7 @@ function PostPage() {
                   
                   <CardBody style={{ display: 'flex', justifyContent: 'space-between'}}>
                     <p  className="overflow-auto">{c?.content} </p>
-                  { isLoggedIn()  && local.user.uid==c.userId && (<UncontrolledDropdown>
+                  { isLoggedIn()  && (local.user.uid==c.userId || checkAdmin()) && (<UncontrolledDropdown>
       <DropdownToggle>
       <FontAwesomeIcon icon={faEllipsisVertical}/>
       </DropdownToggle>

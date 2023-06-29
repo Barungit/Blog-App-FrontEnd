@@ -23,7 +23,7 @@ function CategorySideMenu() {
   return (
     <div>
         <ListGroup>
-            <ListGroupItem action={true} tag={Link} to="/">All Blogs</ListGroupItem>
+            <ListGroupItem action={true} tag={Link} to="/blogs">All Blogs</ListGroupItem>
 
         {categories && categories.map((cat,index) => {
             return (
