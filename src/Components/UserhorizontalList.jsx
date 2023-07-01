@@ -14,14 +14,11 @@ function UserhorizontalList() {
   <ListGroupItem action={true} tag={Link} to="/user/myblogs">
     My Blogs
   </ListGroupItem>
-  <ListGroupItem>
-    Morbi leo risus
+  <ListGroupItem action={true} tag={Link} to="/user/password">
+    Change Password
   </ListGroupItem>
-  <ListGroupItem>
-    Porta ac consectetur ac
-  </ListGroupItem>
-  <ListGroupItem>
-    Vestibulum at eros
+  <ListGroupItem action={true} tag={Link} to="/">
+   Blogs on Demand
   </ListGroupItem>
 </ListGroup>
     </div>

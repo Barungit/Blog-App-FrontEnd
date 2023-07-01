@@ -76,9 +76,9 @@ const Login=()=> {
                 <Col sm={{size:8,offset:2}}>
                 
                 
-            <Card style={{border: '3px solid black'}}>
-            <CardHeader>
-                <h3>LOGIN HERE!! </h3>
+            <Card className=" shadow border border-dark">
+            <CardHeader className="bg-primary">
+                <h3 className="text-white">Login Here </h3>
 
             </CardHeader>
 
@@ -106,8 +106,8 @@ const Login=()=> {
 
                     {/* Button Fields */}
                     <Container className="text-center">
-                        <Button type="Login" color="success">Login</Button>
-                        <Button type="reset" onClick={resetData} color="danger" className="ms-3">Reset</Button>
+                        <Button className="shadow" type="Login" color="success">Login</Button>
+                        <Button className="shadow ms-3" type="reset" onClick={resetData} color="danger">Reset</Button>
                     </Container>
 
                 </Form>
