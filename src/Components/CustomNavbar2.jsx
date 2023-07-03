@@ -69,7 +69,7 @@ import CheckTokenExpiration from './CheckTokenExpiration';
        <CheckTokenExpiration />
         <Navbar 
         
-          color="dark" 
+        style={{backgroundImage: "linear-gradient(to right,  #4B0082, #8B008B)"}}
           dark expand={"sm"} 
           fixed=""
           className='px-3'>
@@ -84,16 +84,16 @@ import CheckTokenExpiration from './CheckTokenExpiration';
           <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
           <NavItem className='mx-3'>
-          <NavLink tag={ReactLink} to="/blogs">New Feeds</NavLink>
+          <NavLink tag={ReactLink} className=' text-white' to="/blogs">New Feeds</NavLink>
             </NavItem>
-            <NavItem className='mx-3'>
-                <NavLink tag={ReactLink} to="/about">About</NavLink>
+            <NavItem className='mx-3 '>
+                <NavLink tag={ReactLink} className=' text-white' to="/about">About</NavLink>
               </NavItem>
               <NavItem className='mx-3'>
-                <NavLink tag={ReactLink} to="/services">Services</NavLink>
+                <NavLink className=' text-white' tag={ReactLink} to="/services">Services</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
+                <DropdownToggle nav caret className=' text-white'>
                   Options
                 </DropdownToggle>
                 <DropdownMenu end>
@@ -117,7 +117,7 @@ import CheckTokenExpiration from './CheckTokenExpiration';
                 <Form onSubmit={handleSearch}>
                   <Row>
                     <Col><Input style={{width:"350px"}} type='text' placeholder='Search here...' onChange={(event)=> {setKeywords(event.target.value)}} value={keywords}></Input></Col>
-                    <Col><Button type='submit' >Search</Button></Col>
+                    <Col><Button type='submit' className=' text-white' >Search</Button></Col>
                   </Row>
                   
                   
@@ -128,17 +128,14 @@ import CheckTokenExpiration from './CheckTokenExpiration';
                 login && (
                   <>
                   {isAdmin && (<NavItem className='mx-3'>
-                  <NavLink tag={ReactLink} to="/user/admin/home">Admin</NavLink>
+                  <NavLink className=' text-white' tag={ReactLink} to="/user/admin/home">Admin</NavLink>
                   </NavItem >)}
                   
                   <NavItem className='mx-3'>
-                  <NavLink onClick={logout}>Logout</NavLink>
+                  <NavLink className=' text-white' onClick={logout}>Logout</NavLink>
                   </NavItem >
                   <NavItem className='mx-3'>
-                  <NavLink tag={ReactLink} to="/user/profile_info">{user.name}</NavLink>
-                  </NavItem >
-                  <NavItem className='mx-3'>
-                  <NavLink tag={ReactLink} to="/user/dashboard">Post</NavLink>
+                  <NavLink className=' text-white' tag={ReactLink} to="/user/myblogs">{user.name}</NavLink>
                   </NavItem >
                   </>
                 )
@@ -148,10 +145,10 @@ import CheckTokenExpiration from './CheckTokenExpiration';
                 !login && (
                   <>
                   <NavItem className='mx-3'>
-                  <NavLink tag={ReactLink} to="/signup">SignUp</NavLink>
+                  <NavLink className=' text-white' tag={ReactLink} to="/signup">SignUp</NavLink>
               </NavItem >
               <NavItem >
-                  <NavLink tag={ReactLink} to="/login">Login</NavLink>
+                  <NavLink className=' text-white' tag={ReactLink} to="/login">Login</NavLink>
               </NavItem>
                   </>
                 )

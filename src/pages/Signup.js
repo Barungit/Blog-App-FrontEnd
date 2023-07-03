@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import { Button, Card, CardBody, CardHeader, Container, Form, FormFeedback, FormGroup, Input, Label } from "reactstrap"
+import { NavLink as ReactLink } from 'react-router-dom';
+import { Button, Card, CardBody, CardHeader, Container, Form, FormFeedback, FormGroup, Input, Label, NavLink } from "reactstrap"
 import { signUp } from "../services/user-service"
 import { toast } from "react-toastify"
 import Base from "../Components/Base"
@@ -167,7 +168,7 @@ const Signup=()=> {
                             {error.errors?.response?.data?.phone}
                         </FormFeedback>
                     </FormGroup>
-
+                    <NavLink className=' text-primary' tag={ReactLink} to="/login">Already a user? Click here to login!!</NavLink>
                     {/* Button Fields */}
                     <Container className="text-center">
                     

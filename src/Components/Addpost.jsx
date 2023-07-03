@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Card, CardBody, Container, Form, Input, Label } from 'reactstrap'
+import { Button, Card, CardBody, CardHeader, Container, Form, Input, Label } from 'reactstrap'
 import { loadAllCategories } from '../services/category-service'
 import JoditEditor from 'jodit-react'
 import { useRef } from 'react'
@@ -94,7 +94,11 @@ function Addpost() {
     <div className='wrapper'>
         <Card className='shadow'>
             <CardBody>
-                <h3>Fill below to add blog</h3>
+            <CardHeader className="bg-primary">
+                <h3 className="text-white">Fill below to add blog</h3>
+
+            </CardHeader>
+                
                 {/*JSON.stringify(post)*/}
                 <Form onSubmit={createPost}>
                     <div className='my-3'>

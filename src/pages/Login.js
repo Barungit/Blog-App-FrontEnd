@@ -1,11 +1,11 @@
 import { useState } from "react"
 import { toast } from "react-toastify"
-import { Button, Card, CardBody, CardHeader, Col, Container, Form, FormGroup, Input, Label, Row } from "reactstrap"
+import { Button, Card, CardBody, CardHeader, Col, Container, Form, FormGroup, Input, Label, NavLink, Row } from "reactstrap"
 import { loginUser } from "../services/user-service"
 import { doLogin } from "../auth"
 import { useNavigate } from "react-router-dom"
 import userContext from "../context/userContext"
-
+import { NavLink as ReactLink } from 'react-router-dom';
 import Base from "../Components/Base"
 import { useContext } from "react"
 const Login=()=> {
@@ -54,7 +54,7 @@ const Login=()=> {
                     login: true,
                 })
                 //redirect to user dashboard page
-                navigate("/user/dashboard")
+                navigate("/user/myblogs")
             })
             toast.success("Login Success!")
         }).catch(error=>{
@@ -103,6 +103,8 @@ const Login=()=> {
                             onChange={(e)=> handleChange(e,'password')}
                         />
                     </FormGroup>
+
+                    <NavLink className=' text-primary' tag={ReactLink} to="/signup">New user? Click here to signup!</NavLink>
 
                     {/* Button Fields */}
                     <Container className="text-center">

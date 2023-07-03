@@ -7,19 +7,20 @@ function UserhorizontalList() {
     <div>
         <ListGroup
   horizontal
->
-  <ListGroupItem action={true} tag={Link} to="/user/profile_info">
-    My Profile
+> <ListGroupItem action={true} tag={Link} to="/user/dashboard">
+   Add Blog
   </ListGroupItem>
+  
   <ListGroupItem action={true} tag={Link} to="/user/myblogs">
     My Blogs
+  </ListGroupItem>
+  <ListGroupItem action={true} tag={Link} to="/user/profile_info">
+    My Profile
   </ListGroupItem>
   <ListGroupItem action={true} tag={Link} to="/user/password">
     Change Password
   </ListGroupItem>
-  <ListGroupItem action={true} tag={Link} to="/">
-   Blogs on Demand
-  </ListGroupItem>
+  
 </ListGroup>
     </div>
   )

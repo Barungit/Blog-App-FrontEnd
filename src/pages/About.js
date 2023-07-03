@@ -45,9 +45,9 @@ const AboutUs = () => {
                         </div>
                         <div class="col-6 col-md-8">
                             <ul class="list-inline m-0">
-                                <li class="py-2 border-top border-bottom"><FontAwesomeIcon icon={faCheck} style={{backgroundColor:"#90ee90"}} /> Labore eos amet dolor amet diam</li>
-                                <li class="py-2 border-bottom"><FontAwesomeIcon icon={faCheck} style={{backgroundColor:"#90ee90"}} /> Etsea et sit dolor amet ipsum</li>
-                                <li class="py-2 border-bottom"><FontAwesomeIcon icon={faCheck} style={{backgroundColor:"#90ee90"}} /> Diam dolor diam elitripsum vero.</li>
+                                <li class="py-2 border-top border-bottom"><FontAwesomeIcon className='text-success fa-lg' icon={faCheck} style={{backgroundColor:"yellow"}} /> Labore eos amet dolor amet diam</li>
+                                <li class="py-2 border-bottom "><FontAwesomeIcon className='text-success fa-lg' icon={faCheck} style={{backgroundColor:"yellow"}}  /> Etsea et sit dolor amet ipsum</li>
+                                <li class="py-2 border-bottom"><FontAwesomeIcon className='text-success fa-lg' icon={faCheck} style={{backgroundColor:"yellow"}} /> Diam dolor diam elitripsum vero.</li>
                             </ul>
                         </div>
                     </div>
