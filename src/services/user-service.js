@@ -6,6 +6,19 @@ export const signUp=(user)=>{
     .then((response)=> response.data)
 
 }
+
+//upload propic
+export const uploadProPic=(uid, image)=>{
+    let formData=new FormData();
+    formData.append("image", image);
+ 
+    return myAxios.post(`/users/pfp/upload/${uid}`,formData,{
+       headers:{
+          'Content-Type':'multipart/form-data'
+       }
+    }).then((response)=>response.data);
+    
+  };
 //login user
 export const loginUser=(loginDetail)=>{
     return myAxios.post("/auth/login/",loginDetail).then((response)=>response.data)

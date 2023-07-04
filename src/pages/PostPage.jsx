@@ -197,7 +197,7 @@ function PostPage() {
             </CardText>
             </div>
             <hr style={{ height: '2px', backgroundColor: '#e0e0e0', border: 'none', margin: '20px 0' }} />
-            <CardImg
+           { (post?.picname) && <CardImg
               alt="Not in this blog! :("
               src={BASE_URL + "/blogs/image/" + post?.picname}
               style={{
@@ -205,7 +205,7 @@ function PostPage() {
                 width: '50%',
                 float: 'right'
               }}
-            />
+            />}
             <CardText
               dangerouslySetInnerHTML={{ __html: post?.content }}
             ></CardText>

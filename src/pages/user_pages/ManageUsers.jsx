@@ -1,9 +1,10 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { Button, Card, CardText, CardTitle } from 'reactstrap'
+import { Button, Card, CardImg, CardText, CardTitle } from 'reactstrap'
 import { deleteUser, getAllUsers } from '../../services/user-service'
 import { toast } from 'react-toastify'
+import { BASE_URL } from '../../services/helper'
 
 function ManageUsers() {
     const [users,setUsers]=useState([])
@@ -38,6 +39,7 @@ function ManageUsers() {
                 return (
         
            <Card>
+            <center><img src={BASE_URL+ '/users/pfp/' + user.propic} height={100} width={100} /></center>
             <CardTitle>
               {user.name}
             </CardTitle>

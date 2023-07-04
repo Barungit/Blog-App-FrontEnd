@@ -1,6 +1,5 @@
 import React from 'react'
 import Base from '../../Components/Base'
-import UserhorizontalList from '../../Components/UserhorizontalList'
 import CategorySideMenu from '../../Components/CategorySideMenu'
 import NewFeed from '../../Components/NewFeed'
 import { Col, Container, Pagination, PaginationItem, PaginationLink, Row } from 'reactstrap'
@@ -64,7 +63,7 @@ function MyBlogs() {
 
   return (
     <Base>
-        <UserhorizontalList />
+        
         <Row> 
             <Col md={
                 {

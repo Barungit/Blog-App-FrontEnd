@@ -23,6 +23,8 @@ import { doLogout, getCurrentUserDetail, isLoggedIn } from '../auth';
 import userContext from '../context/userContext';
 import { useContext } from 'react';
 import CheckTokenExpiration from './CheckTokenExpiration';
+import { BASE_URL } from '../services/helper';
+
 
  const CustomNavBar2 = () => {
   const userContextData = useContext(userContext);
@@ -32,6 +34,7 @@ import CheckTokenExpiration from './CheckTokenExpiration';
   const [user,setUser]=useState(undefined)
   const [isAdmin,setIsAdmin]=useState(false)
   const [keywords, setKeywords]=useState("")
+  
 
   useEffect(()=>{
     setLogin(isLoggedIn())
@@ -93,10 +96,13 @@ import CheckTokenExpiration from './CheckTokenExpiration';
                 <NavLink className=' text-white' tag={ReactLink} to="/services">Services</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret className=' text-white'>
-                  Options
-                </DropdownToggle>
-                <DropdownMenu end>
+  <DropdownToggle nav caret className='text-white mx-2'>
+    Options
+  
+  </DropdownToggle>
+  <DropdownMenu
+    end
+  >
                   <DropdownItem>
                     Option 1
                   </DropdownItem>
@@ -131,12 +137,56 @@ import CheckTokenExpiration from './CheckTokenExpiration';
                   <NavLink className=' text-white' tag={ReactLink} to="/user/admin/home">Admin</NavLink>
                   </NavItem >)}
                   
-                  <NavItem className='mx-3'>
+                  {/* <NavItem className='mx-3'>
                   <NavLink className=' text-white' onClick={logout}>Logout</NavLink>
                   </NavItem >
                   <NavItem className='mx-3'>
-                  <NavLink className=' text-white' tag={ReactLink} to="/user/myblogs">{user.name}</NavLink>
-                  </NavItem >
+                  <NavLink className=' text-white' tag={ReactLink} to="/user/profile_info">
+                    <img src={BASE_URL+ '/users/pfp/' +userContextData?.user?.data?.propic} style={{
+                  height: 35,
+                  width:35,
+                  borderRadius: 50,
+                }} />
+                    </NavLink>
+                  </NavItem > */}
+
+
+                  <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret className=' text-white mx-2'>
+                 <img src={BASE_URL+ '/users/pfp/' +userContextData?.user?.data?.propic} style={{
+                  height: 35,
+                  width:35,
+                  borderRadius: 50,
+                }} />
+                </DropdownToggle>
+                <DropdownMenu
+    className='mx-1'
+    style={{
+      maxWidth: '190px', // Adjust the value as per your preference
+      overflow: 'auto',
+      right: 0,
+    }}
+    end
+  >
+                  <DropdownItem>
+                  <NavLink className=' text-dark' tag={ReactLink} to="/user/profile_info">My Profile</NavLink>
+                  </DropdownItem>
+                  <DropdownItem>
+                  <NavLink className=' text-dark' tag={ReactLink} to="/user/myblogs">My Blogs</NavLink>
+                  </DropdownItem>
+                  <DropdownItem>
+                  <NavLink className=' text-dark' tag={ReactLink} to="/user/dashboard">Add Blog</NavLink>
+                  </DropdownItem>
+                  <DropdownItem>
+                  <NavLink className=' text-dark' tag={ReactLink} to="/user/password">Change Password</NavLink>
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>
+                  <NavLink className=' text-dark' onClick={logout}>Logout</NavLink>
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+                  
                   </>
                 )
               }

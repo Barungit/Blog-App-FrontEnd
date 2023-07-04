@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Base from "../../Components/Base";
 import {
   Button,
@@ -13,15 +13,15 @@ import {
   Label,
   Row,
 } from "reactstrap";
-import UserhorizontalList from "../../Components/UserhorizontalList";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import IconButton from "../../Components/IconButton";
-import { deleteUser, updateUserDetails } from "../../services/user-service";
+import { deleteUser, updateUserDetails, uploadProPic } from "../../services/user-service";
 import { toast } from "react-toastify";
 import { Navigate, useNavigate } from "react-router-dom";
 import { doLogout } from "../../auth";
 import { useContext } from "react";
 import userContext from "../../context/userContext";
+import { BASE_URL } from "../../services/helper";
 
 const Profile_info = () => {
   const userContextData = useContext(userContext);
@@ -30,8 +30,32 @@ const Profile_info = () => {
   const [formData,setFormData] = useState({
     name:'',
     about:'',
-    phone:''
+    phone:'',
   });
+
+  useEffect(() => {
+    // Function to load the userContextData from local storage
+    const loadUserContextFromStorage = () => {
+      const storedUserContextData = localStorage.getItem("userContextData");
+
+      if (storedUserContextData) {
+        // If stored data exists, parse and update the userContextData
+        userContextData.setUser({
+          data: JSON.parse(storedUserContextData),
+          login: true,
+      });
+      }
+    };
+
+    // Load the userContextData from local storage on component mount
+    loadUserContextFromStorage();
+
+    // Save the userContextData to local storage whenever it changes
+    
+
+    // Clean up function to remove the event listener
+
+  },[] );
 
   const handleClick = (event) => {
   
@@ -80,6 +104,31 @@ const Profile_info = () => {
     updateUserDetails(formData,local.user.uid).then(data => {
       console.log(data);
       toast.success("User Data Updated!!")
+      console.log(image);
+      localStorage.setItem("userContextData", JSON.stringify(data));
+      userContextData.setUser({
+        data: data,
+        login: true,
+    })
+    console.log(userContextData)
+      if(image!=null){
+      uploadProPic(data.uid,image).then(resp=>{
+        console.log(resp)
+        toast.success("Propic Updated!!");
+        
+      
+      localStorage.setItem("userContextData", JSON.stringify(resp));
+      userContextData.setUser({
+        data: resp,
+        login: true,
+    })
+        console.log(userContextData)
+       }).catch(error=>{
+           toast.error("Error in updating propic!")
+        console.log(error)
+        })  }
+        
+      
     }).catch(error=>{
       toast.error("Error in updating post!")
    console.log(error)
@@ -111,16 +160,23 @@ const logout=()=>{
   })
 }
 
+const [image, setImage] = useState(null);
+const handlefilechange=(event)=>{
+  console.log(event.target.files[0])
+  
+  setImage(event.target.files[0])
+}
   const local = JSON.parse(localStorage.getItem("data"));
   return (
     <Base>
-      <UserhorizontalList />
       <div>
         <Container>
           <Card>
+            <center><img src={BASE_URL+ '/users/pfp/' +userContextData?.user?.data?.propic} height={100} width={100} /></center>
             <CardTitle className="my-2">
               <h3>
-                <center>{local?.user?.name}</center>
+                <center>{userContextData?.user?.data?.name}</center>
+                {console.log(userContextData)}
               </h3>
             </CardTitle>
             <hr />
@@ -140,7 +196,7 @@ const logout=()=>{
                         type="text"
                         name="name"
                         id="nameField"
-                        defaultValue={local?.user?.name}
+                        defaultValue={userContextData?.user?.data?.name}
                         disabled={disabled}
                         onChange={fieldChanged}
     
@@ -157,7 +213,7 @@ const logout=()=>{
                         type="textarea"
                         name="about"
                         id="aboutField"
-                        defaultValue={local?.user?.about}
+                        defaultValue={userContextData?.user?.data?.about}
                         disabled={disabled}
                         onChange={fieldChanged}
                       />
@@ -173,10 +229,21 @@ const logout=()=>{
                         type="number"
                         name="phone"
                         id="phoneField"
-                        defaultValue={local?.user?.phone}
+                        defaultValue={userContextData?.user?.data?.phone}
                         disabled={disabled}
                         onChange={fieldChanged}
                       />
+                    </Col>
+                    </Row>
+
+                    <Row className="my-3">
+                    <Col>
+                    
+                    <Label for="image">Select New Profile Picture</Label>
+                    <Input id="image" name="image" type="file" accept="image/*" onChange={handlefilechange} disabled={disabled}
+                      
+                    />
+                            
                     </Col>
                     
                   </Row>

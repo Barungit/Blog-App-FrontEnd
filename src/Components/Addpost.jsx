@@ -65,13 +65,14 @@ function Addpost() {
         post['userId'] = user.uid
         doCreatePost(post).then(data => {
            console.log(data);
+           if(image!=null){
             uploadPostImage(data.bid,image).then(data=>{
             toast.success("Image Uploaded!!");
            }).catch(error=>{
                toast.error("Error in uploading image!")
             console.log(error)
             })
-
+        }
             toast.success("Blog posted sucessfully!");
             console.log(post)
            /* setPost({

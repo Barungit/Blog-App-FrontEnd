@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
 import { NavLink as ReactLink } from 'react-router-dom';
 import { Button, Card, CardBody, CardHeader, Container, Form, FormFeedback, FormGroup, Input, Label, NavLink } from "reactstrap"
-import { signUp } from "../services/user-service"
+import { signUp, uploadProPic } from "../services/user-service"
 import { toast } from "react-toastify"
+import { useNavigate } from "react-router-dom"
 import Base from "../Components/Base"
 //import (signUp)
 const Signup=()=> {
@@ -20,6 +21,9 @@ const Signup=()=> {
        isError:false
 
     })
+
+    const [image, setImage] = useState(null);
+    const navigate=useNavigate()
     /*
     useEffect(()=>{
         console.log(data)
@@ -68,7 +72,14 @@ const Signup=()=> {
                 setError({
                     isError:false,
                     errors:null
-                })   
+                }) 
+                uploadProPic(resp.uid,image).then(data=>{
+                    toast.success("Propic Uploaded!!");
+                   }).catch(error=>{
+                       toast.error("Error in uploading propic!")
+                    console.log(error)
+                    })  
+                    navigate("/login")
         }).catch((error)=>{
             console.log(error)
             console.log("Error log")
@@ -79,6 +90,12 @@ const Signup=()=> {
             })
             toast.error("Form data is invalid!!")
         })
+    }
+
+    const handlefilechange=(event)=>{
+        console.log(event.target.files[0])
+        
+        setImage(event.target.files[0])
     }
 
 
@@ -163,6 +180,12 @@ const Signup=()=> {
                         value={data.phone}
                         invalid={ error.errors?.response?.data?.phone ? true: false}
                         />
+                    
+                    {/*image*/}
+                   <div className='my-3'>
+                    <Label for="image">Select Image</Label>
+                    <Input id="image" name="image" type="file" accept="image/*" onChange={handlefilechange}/>
+                            </div>
 
                         <FormFeedback>
                             {error.errors?.response?.data?.phone}

@@ -17,7 +17,6 @@ import {
   Label,
   Row,
 } from "reactstrap";
-import UserhorizontalList from "../../Components/UserhorizontalList";
 import { toast } from "react-toastify";
 import { changePassword } from "../../services/user-service";
 
@@ -71,7 +70,7 @@ function PasswordChange() {
   };
   return (
     <Base>
-      <UserhorizontalList />
+      
       <div>
         <Container className="my-5">
           <Row>

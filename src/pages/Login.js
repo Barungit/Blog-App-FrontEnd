@@ -50,7 +50,7 @@ const Login=()=> {
             doLogin(data,()=>{
                 console.log("login detail is saved to localstorage")
                 userContextData.setUser({
-                    data: data,
+                    data: data.user,
                     login: true,
                 })
                 //redirect to user dashboard page
