@@ -148,7 +148,7 @@ const Home = () => {
                     <h4 class="fa fa-phone-alt text-primary"></h4>
                     <div class="pl-3">
                         <h5 class="text-white">Phone</h5>
-                        <p>+91 9135340191 ,9835372340,7903747995,9304009103</p>
+                        <p>+91 9135340191 , 9835372340 , 7903747995 , 9304009103 </p>
                     </div>
                 </div>
             </div>
