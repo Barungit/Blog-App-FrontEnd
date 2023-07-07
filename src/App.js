@@ -19,10 +19,14 @@ import UpdateBlog from './pages/UpdateBlog';
 import AdminPage from './pages/user_pages/AdminPage';
 import Search from './pages/Search';
 import AllBlogs from './pages/AllBlogs';
+import { Row } from 'reactstrap';
+import Footer from './Components/Footer';
+import PasswordChange from './pages/user_pages/PasswordChange';
 
 
 function App() {
   return (
+    <div>
     <UserProvider>
     <BrowserRouter>
     <ToastContainer position='bottom-center' />
@@ -41,6 +45,7 @@ function App() {
         <Route path='dashboard' element={<Userdashboard />}/>
         <Route path='profile_info' element={<Profile_info />}/>
         <Route path='myblogs' element={<MyBlogs />}/>
+        <Route path='password' element={<PasswordChange />}/>
         <Route path='update_blog/:bid' element={<UpdateBlog />}/>
         <Route path='admin/home' element={<AdminPage />} />
       </Route>
@@ -48,6 +53,9 @@ function App() {
       </Routes>
     </BrowserRouter>
     </UserProvider>
+     <Footer />
+
+</div>
   );
 }
 

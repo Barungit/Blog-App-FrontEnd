@@ -3,6 +3,7 @@ import Base from "../Components/Base";
 import NewFeed from "../Components/NewFeed";
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.css';
+import { faGoogle, faInstagram, faTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import './Carousel.css';
 
 import {
@@ -24,6 +25,9 @@ import { loadAllPost } from "../services/post-service";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { BASE_URL } from "../services/helper";
+import { faAddressCard, faMailBulk, faMobileScreen, faPhone, faWalkieTalkie } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Footer from "../Components/Footer";
 
 const Home = () => {
   const [carouselItems, setCarouselItems] = useState([]);
@@ -43,7 +47,7 @@ const Home = () => {
   };
   return (
     <Base>
-      <div>
+      
         <div className="container-fluid bg-primary  ">
           <Row>
             <Col className="  mx-5 d-flex justify-content-center ">
@@ -69,8 +73,8 @@ const Home = () => {
                 className="img-fluid"
                 src="https://picsum.photos/900/180"
                 style={{
-                  height: 100,
-                  borderRadius: 50,
+                  height: 450,
+                  borderRadius: 300,
                 }}
                 alt=""
               />
@@ -78,7 +82,7 @@ const Home = () => {
             </Col>
           </Row>
         </div>
-        <Row><Col className="carousel-col">
+        <Row className="my-4 mx-4"><Col >
         <Carousel  showThumbs={false} // Disable thumbnail navigation
         showIndicators={true} // Show indicators
         infiniteLoop={true} // Enable infinite loop
@@ -87,7 +91,7 @@ const Home = () => {
         transitionTime={500} // Set the transition duration (in milliseconds)
         emulateTouch={true} // Enable touch swipe // Stop auto-play on hover
         stopOnHover={true}
-        className="custom-carousel"
+        className="custom-carousel border border-dark "
          >
         {carouselItems.map((item) => (
           <div key={item.key} className="carousel-card" >
@@ -96,7 +100,7 @@ const Home = () => {
             <CardImg top src={BASE_URL+ '/blogs/image/' + item.picname} alt={item.altText} onError={handleImageError} />
             <CardImgOverlay >
               <CardTitle className="display-4">{item.title}</CardTitle>
-              <CardText className="text-muted" dangerouslySetInnerHTML={{__html:item.content.substring(0,500)}}/>
+              {/* <CardText className="text-muted" dangerouslySetInnerHTML={{__html:item.content.substring(0,5000)}}/> */}
               <CardSubtitle className="legend">{item.category.categoryTitle}</CardSubtitle>
               
             </CardImgOverlay>
@@ -107,6 +111,7 @@ const Home = () => {
       </Carousel>
       </Col>
         </Row>
+<<<<<<< HEAD
         <Row>
         <div class="container-fluid bg-secondary text-white mt-5 py-5 px-sm-3 px-md-5">
         <div class="row pt-5">
@@ -174,6 +179,9 @@ const Home = () => {
     </div>
         </Row>
       </div>
+=======
+       
+>>>>>>> origin/main
     </Base>
   );
 };

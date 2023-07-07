@@ -1,11 +1,11 @@
 import { useState } from "react"
 import { toast } from "react-toastify"
-import { Button, Card, CardBody, CardHeader, Col, Container, Form, FormGroup, Input, Label, Row } from "reactstrap"
+import { Button, Card, CardBody, CardHeader, Col, Container, Form, FormGroup, Input, Label, NavLink, Row } from "reactstrap"
 import { loginUser } from "../services/user-service"
 import { doLogin } from "../auth"
 import { useNavigate } from "react-router-dom"
 import userContext from "../context/userContext"
-
+import { NavLink as ReactLink } from 'react-router-dom';
 import Base from "../Components/Base"
 import { useContext } from "react"
 const Login=()=> {
@@ -50,11 +50,11 @@ const Login=()=> {
             doLogin(data,()=>{
                 console.log("login detail is saved to localstorage")
                 userContextData.setUser({
-                    data: data,
+                    data: data.user,
                     login: true,
                 })
                 //redirect to user dashboard page
-                navigate("/user/dashboard")
+                navigate("/user/myblogs")
             })
             toast.success("Login Success!")
         }).catch(error=>{
@@ -76,9 +76,9 @@ const Login=()=> {
                 <Col sm={{size:8,offset:2}}>
                 
                 
-            <Card style={{border: '3px solid black'}}>
-            <CardHeader>
-                <h3>LOGIN HERE!! </h3>
+            <Card className=" shadow border border-dark">
+            <CardHeader className="bg-primary">
+                <h3 className="text-white">Login Here </h3>
 
             </CardHeader>
 
@@ -104,10 +104,12 @@ const Login=()=> {
                         />
                     </FormGroup>
 
+                    <NavLink className=' text-primary' tag={ReactLink} to="/signup">New user? Click here to signup!</NavLink>
+
                     {/* Button Fields */}
                     <Container className="text-center">
-                        <Button type="Login" color="success">Login</Button>
-                        <Button type="reset" onClick={resetData} color="danger" className="ms-3">Reset</Button>
+                        <Button className="shadow" type="Login" color="success">Login</Button>
+                        <Button className="shadow ms-3" type="reset" onClick={resetData} color="danger">Reset</Button>
                     </Container>
 
                 </Form>

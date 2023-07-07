@@ -6,6 +6,19 @@ export const signUp=(user)=>{
     .then((response)=> response.data)
 
 }
+
+//upload propic
+export const uploadProPic=(uid, image)=>{
+    let formData=new FormData();
+    formData.append("image", image);
+ 
+    return myAxios.post(`/users/pfp/upload/${uid}`,formData,{
+       headers:{
+          'Content-Type':'multipart/form-data'
+       }
+    }).then((response)=>response.data);
+    
+  };
 //login user
 export const loginUser=(loginDetail)=>{
     return myAxios.post("/auth/login/",loginDetail).then((response)=>response.data)
@@ -24,6 +37,12 @@ export const updateUserDetails=(user,uid)=>{
     return privateAxios.put(`/users/${uid}`,user).then(response=>{return response.data});
 }
 
+//changePassowrd
+export const changePassword=(user,uid)=>{
+    console.log(user)
+    console.log(uid)
+    return privateAxios.put(`/users/password/${uid}`,user).then(response=>{return response.data});
+}
 //delete user
 export const deleteUser= (uid) => {
     return privateAxios.delete(`/users/${uid}`).then(response=>{return response.data});

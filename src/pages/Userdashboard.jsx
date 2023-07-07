@@ -10,7 +10,7 @@ const Userdashboard = () => {
     
     <Base>
     
-    <Container>
+    <Container className='my-3'>
       {/* {value.user.data.user.name}{value.user.data.user.roles[0].name} */}
     <Addpost />
     </Container>

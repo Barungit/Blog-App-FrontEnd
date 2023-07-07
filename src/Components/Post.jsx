@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Card, CardBody, CardHeader, CardSubtitle, CardText, CardTitle } from 'reactstrap'
-import { getCurrentUserDetail, isLoggedIn } from '../auth'
+import { checkAdmin, getCurrentUserDetail, isLoggedIn } from '../auth'
 import { useContext } from 'react';
 import userContext from '../context/userContext';
 
@@ -42,7 +42,7 @@ function Post({post={title:"Def title",content:"Def content"}, deletePost}) {
               {"Category: " + post?.category.categoryTitle}
             </CardSubtitle>
               <Link to={'/blogs/'+post.bid} className='btn btn-warning'>Read More</Link>
-              {userContextData.user.login && (user && user.uid === post.user.uid ? <Button onClick={() => deletePost(post)} color='danger' className='ms-2'>Delete</Button> : '')}
+              {isLoggedIn()  && ((user && user.uid === post.user.uid) || checkAdmin()) && ( <Button onClick={() => deletePost(post)} color='danger' className='ms-2'>Delete</Button> )}
               {userContextData.user.login && (user && user.uid === post.user.uid ? <Button tag={Link} to={`/user/update_blog/${post.bid}`} color='warning' className='ms-2'>Update</Button> : '')}
         </CardBody>
     </Card>
