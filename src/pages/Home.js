@@ -53,10 +53,10 @@ const Home = () => {
             <Col className="  mx-5 d-flex justify-content-center ">
               <div className="text-center">
                 <h4 className="my-4 text-white" style={{fontFamily:'Georgia' ,fontSize:'46px'}}>
-                  Kids Learning Center
+                  Learn with Blogs
                 </h4>
                 <h1 className="display-3 font-weight-bold text-white my-font ">
-                  New Approach to Kids Education
+                  New Approach to Education
                 </h1>
                 <p className="text-white mb-4" style={{fontFamily:'Lucida Handwriting' ,fontSize:'26px'}}>
                   Sea ipsum kasd eirmod kasd magna, est sea et diam ipsum est

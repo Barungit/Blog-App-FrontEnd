@@ -72,7 +72,7 @@ import { BASE_URL } from '../services/helper';
        <CheckTokenExpiration />
         <Navbar 
         
-        style={{backgroundImage: "linear-gradient(to right,  #4B0082, #8B008B)"}}
+        style={{backgroundImage: "linear-gradient(to right, red,green)"}}
           dark expand={"sm"} 
           fixed=""
           className='px-3'>
