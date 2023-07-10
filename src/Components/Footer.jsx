@@ -2,6 +2,7 @@ import { faGoogle, faInstagram, faTwitter, faWhatsapp } from '@fortawesome/free-
 import { faAddressCard, faMailBulk, faMobileScreen, faPhone } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
+import { Link } from 'react-router-dom';
 import { Row } from 'reactstrap'
 
 function Footer() {
@@ -14,36 +15,45 @@ function Footer() {
 
     <div class="container p-4 pb-0">
     
-      <section class="">
+      <section>
     
-        <div class="row">
-    
-          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-            <h6 class="text-uppercase mb-4 font-weight-bold">
-            <a href="/" class="text-decoration-none text-white"> LearnWithBlogs</a>
-            </h6>
-            <h6 class="text-uppercase mb-4 font-weight-bold">
-             <a href="/about" class="text-decoration-none text-white">About Us</a> 
-            </h6>
-            <h6 class="text-uppercase mb-4 font-weight-bold">
-             <a href="/services" class="text-decoration-none text-white">Services</a> 
-            </h6>
-            <h6 class="text-uppercase mb-4 font-weight-bold">
-             <a href="/blogs" class="text-decoration-none text-white">All Blogs</a> 
-            </h6>
-          </div>
+      <div className="row">
+            <div className="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+              <h6 className="text-uppercase mb-4 font-weight-bold">
+                <Link to="/" className="text-decoration-none text-white">LearnWithBlogs</Link>
+              </h6>
+              <h6 className="text-uppercase mb-4 font-weight-bold">
+                <Link to="/about" className="text-decoration-none text-white">About Us</Link>
+              </h6>
+              <h6 className="text-uppercase mb-4 font-weight-bold">
+                <Link to="/services" className="text-decoration-none text-white">Services</Link>
+              </h6>
+              <h6 className="text-uppercase mb-4 font-weight-bold">
+                <Link to="/blogs" className="text-decoration-none text-white">All Blogs</Link>
+              </h6>
+            </div>
 
 
           <hr class="w-100 clearfix d-md-none" />
 
 
-          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-            <h6 class="text-uppercase mb-4 font-weight-bold">All Category</h6>
-              <p>
-category
-              </p>
-
-          </div>
+          <div className="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+              <h6 className="text-uppercase mb-4 font-weight-bold">
+                <Link to="/blogs" className="text-decoration-none text-white">New Feeds</Link>
+              </h6>
+              <h6 className="text-uppercase mb-4 font-weight-bold">
+                <Link to="/categories/6" className="text-decoration-none text-white">Java</Link>
+              </h6>
+              <h6 className="text-uppercase mb-4 font-weight-bold">
+                <Link to="/categories/4" className="text-decoration-none text-white">Python</Link>
+              </h6>
+              <h6 className="text-uppercase mb-4 font-weight-bold">
+                <Link to="/categories/2" className="text-decoration-none text-white">Spring Boot</Link>
+              </h6>
+              <h6 className="text-uppercase mb-4 font-weight-bold">
+                <Link to="/categories/8" className="text-decoration-none text-white">JSP</Link>
+              </h6>
+            </div>
           
 
           <hr class="w-100 clearfix d-md-none" />

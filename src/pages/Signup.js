@@ -107,11 +107,11 @@ const Signup=()=> {
             <Container className="my-3">
             
             <Card style={{border: '3px solid black'}}>
-            <CardHeader>
-                <h3>Fill this form to be a part of us!</h3>
+            <CardHeader className="bg-primary">
+                <h3 className="text-white">Fill this form to be a part of us! </h3>
 
             </CardHeader>
-
+            
             <CardBody>
                 {/* creating form */}
                 <Form onSubmit={submitForm}>
