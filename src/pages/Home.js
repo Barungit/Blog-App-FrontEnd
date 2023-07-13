@@ -5,6 +5,11 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.css';
 import { faGoogle, faInstagram, faTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import './Carousel.css';
+import pp1 from '../images/boy.jpg';
+import pp2 from '../images/girl.jpg';
+import pp3 from '../images/girl2.jpg';
+import pp4 from '../images/girl3.jpg';
+import pp5 from '../images/smile.jpg';
 
 import {
   Button,
@@ -82,6 +87,7 @@ const Home = () => {
             </Col>
           </Row>
         </div>
+        <h1 className="mx-3" style={{ color: '#333', fontSize: '34px', fontWeight: 'bold', margin: '20px' }}>New Feeds:</h1>
         <Row className="my-4 mx-4"><Col >
         <Carousel  showThumbs={false} // Disable thumbnail navigation
         showIndicators={true} // Show indicators
@@ -111,6 +117,32 @@ const Home = () => {
       </Carousel>
       </Col>
         </Row>
+
+      <Row>
+      <h1 className="mx-3" style={{ color: '#333', fontSize: '34px', fontWeight: 'bold', margin: '20px' }}>Our Bloggers:</h1>
+      <div className="container d-flex justify-content-around">
+  <div className="card shadow d-flex justify-content-center align-items-center" style={{ width: '180px', height: '180px', borderRadius: '50%', boxShadow: 'inset 0 0 10px white' }}>
+    <img src={pp1} className="card-img-top" alt="Image" style={{ height: '150px', width: '150px', borderRadius:'75px' }} />
+  </div>
+
+  <div className="card shadow d-flex justify-content-center align-items-center" style={{width: '180px', height: '180px', borderRadius: '50%', boxShadow: 'inset 0 0 10px white' }}>
+    <img src={pp4} className="card-img-top" alt="Image" style={{ height: '150px', width: '150px', borderRadius:'75px'}} />
+  </div>
+
+  <div className="card shadow d-flex justify-content-center align-items-center" style={{width: '180px', height: '180px', borderRadius: '50%', boxShadow: 'inset 0 0 10px white' }}>
+    <img src={pp3}  className="card-img-top" alt="Image" style={{  height: '150px', width: '150px', borderRadius:'75px' }} />
+  </div>
+
+  <div className="card shadow d-flex justify-content-center align-items-center" style={{ width: '180px', height: '180px', borderRadius: '50%', boxShadow: 'inset 0 0 10px white' }}>
+    <img src={pp2}  className="card-img-top" alt="Image" style={{ height: '150px', width: '150px', borderRadius:'75px' }} />
+  </div>
+
+  <div className="card shadow d-flex justify-content-center align-items-center" style={{width: '180px', height: '180px', borderRadius: '50%', boxShadow: 'inset 0 0 10px white' }}>
+    <img src={pp5} className="card-img-top" alt="Image" style={{ height: '150px', width: '150px', borderRadius:'75px'}} />
+  </div>
+</div>
+
+      </Row>
        
     </Base>
   );
