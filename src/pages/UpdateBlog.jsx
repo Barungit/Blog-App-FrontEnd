@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useContext } from "react";
 import userContext from "../context/userContext";
 import { useEffect } from "react";
-import { loadPost, updatePostService } from "../services/post-service";
+import { loadPost, updatePostService, uploadPostImage } from "../services/post-service";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import {
@@ -27,6 +27,7 @@ function UpdateBlog() {
   const object = useContext(userContext);
   const navigate = useNavigate();
   const [post, setPost] = useState(null);
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     loadAllCategories()
@@ -69,12 +70,38 @@ function UpdateBlog() {
     });
   };
 
+  const handlefilechange=(event)=>{
+    console.log(event.target.files[0])
+    
+    setImage(event.target.files[0])
+}
+
   const updatePost=(event)=>{
     event.preventDefault()
     console.log(post)
-    updatePostService({...post,category: { categoryId:post.categoryId}}, post.bid)
+    if(post.title.trim()===''){
+      alert("Post title is required!!")
+      return; 
+  }
+  if(post.content.trim()===''){
+      alert("post content is required!!")
+      return;
+  }
+  if(post.categoryId===''){
+      alert("Select some category!!")
+      return;
+  }
+    updatePostService({...post, category: { categoryId:post.categoryId}}, post.bid)
     .then(res => {
       console.log(res)
+      if(image!=null){
+        uploadPostImage(post.bid,image).then(data=>{
+        toast.success("Image Uploaded!!");
+       }).catch(error=>{
+           toast.error("Error in uploading image!")
+        console.log(error)
+        })
+    }
       toast.success("Blog Updated")
     })
     .catch(error => {
@@ -118,7 +145,9 @@ function UpdateBlog() {
               {/*image*/}
               <div className="my-3">
                 <Label for="image">Select Image</Label>
-                <Input id="image" name="image" type="file" accept="image/*" />
+                <Input id="image" name="image" type="file" accept="image/*" 
+                onChange={handlefilechange}
+                />
               </div>
 
 
@@ -129,7 +158,8 @@ function UpdateBlog() {
                   id="category"
                   placeholder="Select Blog Category"
                   name="categoryId"
-                  value={post.category}
+                  //value={post.category}
+                  defaultValue={post.category}
                   onChange={(event)=> handleChange(event,'categoryId')}
                 >
                   <option disabled value={0}>
