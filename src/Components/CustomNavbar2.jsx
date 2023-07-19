@@ -79,7 +79,9 @@ import { BASE_URL } from '../services/helper';
 
           <NavbarBrand tag={ReactLink} to="/">
             <img alt="logos"src={img1} style={{height: 40, width: 40}} />
-            FunLearn
+            <span className="my-4 text-white mx-2" style={{fontFamily:'Georgia' ,fontSize:'26px'}}>
+                  LearnWithBlogs
+                </span>
           </NavbarBrand>
 
           <NavbarToggler onClick={()=> setIsOpen(!isOpen)} />
