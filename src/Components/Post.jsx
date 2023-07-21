@@ -39,8 +39,9 @@ function Post({post={title:"Def title",content:"Def content"}, deletePost}) {
               
               style={{ fontStyle: "italic"   }}
             >
-              {"Category: " + post?.category.categoryTitle}
+              {"Category : " + post?.category.categoryTitle + " | Views : " + (post?.view)/2}
             </CardSubtitle>
+      
               <Link to={'/blogs/'+post.bid} className='btn btn-warning'>Read More</Link>
               {isLoggedIn()  && ((user && user.uid === post.user.uid) || checkAdmin()) && ( <Button onClick={() => deletePost(post)} color='danger' className='ms-2'>Delete</Button> )}
               {userContextData.user.login && (user && user.uid === post.user.uid ? <Button tag={Link} to={`/user/update_blog/${post.bid}`} color='warning' className='ms-2'>Update</Button> : '')}
