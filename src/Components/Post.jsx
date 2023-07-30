@@ -19,6 +19,7 @@ function Post({post={title:"Def title",content:"Def content"}, deletePost}) {
   };
 
   return (
+    
     <Card className='border-0 shadow-sm mt-3'>
        
         <CardBody>
@@ -47,7 +48,9 @@ function Post({post={title:"Def title",content:"Def content"}, deletePost}) {
               {userContextData.user.login && (user && user.uid === post.user.uid ? <Button tag={Link} to={`/user/update_blog/${post.bid}`} color='warning' className='ms-2'>Update</Button> : '')}
         </CardBody>
     </Card>
-  )
+    )
+  
+  
 }
 
 export default Post

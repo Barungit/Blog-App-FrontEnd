@@ -10,9 +10,9 @@ export const createPost=(postData)=>{
 };
 
 //get all post
- export const loadAllPost=(pageNumber,pageSize)=>{
+ export const loadAllPost=(visible,pageNumber,pageSize)=>{
 
-    return myAxios.get(`/blogs?pageNumber=${pageNumber}&pageSize=${pageSize}`).then(response=>response.data);
+    return myAxios.get(`/blogs/status/${visible}?pageNumber=${pageNumber}&pageSize=${pageSize}`).then(response=>response.data);
  };
 
  //get blog by bid

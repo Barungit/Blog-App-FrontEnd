@@ -8,6 +8,7 @@ import userContext from '../../context/userContext'
 import { checkAdmin, getCurrentUserDetail } from '../../auth'
 import ManageCategories from './ManageCategories'
 import ManageUsers from './ManageUsers'
+import ApproveBlogs from './ApproveBlogs'
 
 
 function AdminPage() {
@@ -48,6 +49,14 @@ function AdminPage() {
         Users
       </NavLink>
     </NavItem>
+    <NavItem>
+      <NavLink
+        className={classnames({ active: activeTab === '3' })}
+        onClick={() => { toggle('3'); }}
+      >
+        Blogs To Approve
+      </NavLink>
+    </NavItem>
   </Nav>
   <TabContent activeTab={activeTab}>
     <TabPane tabId="1">
@@ -61,6 +70,13 @@ function AdminPage() {
       <Row>
         <Col sm="6">
           <ManageUsers />
+        </Col>
+      </Row>
+    </TabPane>
+    <TabPane tabId="3">
+      <Row>
+        <Col sm="12">
+          <ApproveBlogs />
         </Col>
       </Row>
     </TabPane>

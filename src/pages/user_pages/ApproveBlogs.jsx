@@ -1,14 +1,17 @@
 import React from 'react'
 import { useEffect } from 'react'
-import { deletePostService, loadAllPost } from '../services/post-service'
+
 import { useState } from 'react'
 import { Row,Col, Pagination, PaginationItem, PaginationLink, Container } from 'reactstrap'
-import Post from './Post'
+
 import { toast } from 'react-toastify'
 import { useContext } from 'react'
-import userContext from '../context/userContext'
+import userContext from '../../context/userContext'
+import { deletePostService, loadAllPost } from '../../services/post-service'
+import Post from '../../Components/Post'
 
-function NewFeed() {
+
+function ApproveBlogs() {
     const userContextData = useContext(userContext);
     const [postContent,setPostContent]=useState({
         content:[],
@@ -21,7 +24,7 @@ function NewFeed() {
 
     useEffect(()=>{
         //load all blogs from the server
-        loadAllPost(true,0,10).then((data)=>{
+        loadAllPost(false,0,10).then((data)=>{
             console.log(data);
             setPostContent(data);
         }).catch(error=>{
@@ -49,7 +52,7 @@ function NewFeed() {
 
 
     const changePage=(pageNumber=0, pageSize=10)=>{
-        loadAllPost(true,pageNumber,pageSize).then(data=>{
+        loadAllPost(false,pageNumber,pageSize).then(data=>{
             console.log(data);
             setPostContent(data);
             window.scroll(0,0);
@@ -135,4 +138,4 @@ function NewFeed() {
   )
 }
 
-export default NewFeed
+export default ApproveBlogs
