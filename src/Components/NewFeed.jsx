@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect } from 'react'
-import { deletePostService, loadAllPost } from '../services/post-service'
+import { approvePostService, deletePostService, loadAllPost } from '../services/post-service'
 import { useState } from 'react'
 import { Row,Col, Pagination, PaginationItem, PaginationLink, Container } from 'reactstrap'
 import Post from './Post'
@@ -45,7 +45,7 @@ function NewFeed() {
             console.log(error)
             toast.error("Error in deleting this blog!")
         })
-      }
+      } 
 
 
     const changePage=(pageNumber=0, pageSize=10)=>{

@@ -71,3 +71,8 @@ export const createPost=(postData)=>{
  export function updatePostService(post,bid) {
   return privateAxios.put(`/blogs/${bid}`,post).then((resp => resp.data));
  }
+ //approve a blog
+  //update the blog
+  export function approvePostService(bid) {
+    return privateAxios.put(`/blogs/app/${bid}`).then((resp => resp.data));
+   }
