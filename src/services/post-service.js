@@ -10,9 +10,9 @@ export const createPost=(postData)=>{
 };
 
 //get all post
- export const loadAllPost=(pageNumber,pageSize)=>{
+ export const loadAllPost=(visible,pageNumber,pageSize)=>{
 
-    return myAxios.get(`/blogs?pageNumber=${pageNumber}&pageSize=${pageSize}`).then(response=>response.data);
+    return myAxios.get(`/blogs/status/${visible}?pageNumber=${pageNumber}&pageSize=${pageSize}`).then(response=>response.data);
  };
 
  //get blog by bid
@@ -71,3 +71,8 @@ export const createPost=(postData)=>{
  export function updatePostService(post,bid) {
   return privateAxios.put(`/blogs/${bid}`,post).then((resp => resp.data));
  }
+ //approve a blog
+  //update the blog
+  export function approvePostService(bid) {
+    return privateAxios.put(`/blogs/app/${bid}`).then((resp => resp.data));
+   }

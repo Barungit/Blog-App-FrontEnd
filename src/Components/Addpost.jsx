@@ -73,7 +73,7 @@ function Addpost() {
             console.log(error)
             })
         }
-            toast.success("Blog posted sucessfully!");
+            toast.warning("Blog sent for approval!");
             console.log(post)
            /* setPost({
                 title:'',

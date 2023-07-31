@@ -38,7 +38,7 @@ const Home = () => {
   const [carouselItems, setCarouselItems] = useState([]);
 
   useEffect(() => {
-    loadAllPost(0, 5)
+    loadAllPost(true,0, 5)
       .then((data) => {
         console.log(data.content);
         setCarouselItems(data.content);
