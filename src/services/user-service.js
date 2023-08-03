@@ -1,9 +1,7 @@
 import { myAxios, privateAxios } from "./helper";
 //signup
 export const signUp=(user)=>{
-    return myAxios
-    .post("/auth/register/",user)
-    .then((response)=> response.data)
+    return myAxios.post("/auth/register/",user).then((response)=> response.data)
 
 }
 
@@ -42,6 +40,17 @@ export const changePassword=(user,uid)=>{
     console.log(user)
     console.log(uid)
     return privateAxios.put(`/users/password/${uid}`,user).then(response=>{return response.data});
+}
+//forgot and change pass
+export const forgotAndChangePassword=(token,pass)=>{
+    console.log(token)
+    console.log(pass)
+    return myAxios.put(`/users/forgotPassword/${token}/${pass}`).then(response=>{return response.data});
+}
+//sending email to change password to backend
+export const sendtoMail=(email)=>{
+    console.log(email)
+    return myAxios.post(`/auth/fp/${email}`).then(response=>{return response.data});
 }
 //delete user
 export const deleteUser= (uid) => {
