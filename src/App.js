@@ -22,6 +22,8 @@ import AllBlogs from './pages/AllBlogs';
 import { Row } from 'reactstrap';
 import Footer from './Components/Footer';
 import PasswordChange from './pages/user_pages/PasswordChange';
+import ResetPassword from './pages/user_pages/ResetPassword';
+import ForgotPassword from './pages/ForgotPassword';
 
 
 function App() {
@@ -40,6 +42,8 @@ function App() {
       <Route path='/blogs/:bid' element={<PostPage />}/>
       <Route path='/categories/:categoryId' element={<Categories />}/>
       <Route path='/blogs/search/:keywords' element={<Search />}/>
+      <Route path='/forgot-password/:token' element={<ResetPassword />}/>
+      <Route path='/forgot/email' element={<ForgotPassword />}/>
 
       <Route path="/user" element={<Privateroute />}>
         <Route path='dashboard' element={<Userdashboard />}/>

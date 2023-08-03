@@ -16,9 +16,11 @@ import {
   Input,
   Label,
   Row,
+  Toast,
 } from "reactstrap";
 import { toast } from "react-toastify";
 import { changePassword } from "../../services/user-service";
+import { AxiosError } from "axios";
 
 function PasswordChange() {
   const userContextData = useContext(userContext);
@@ -64,8 +66,12 @@ function PasswordChange() {
         toast.success("Password Changed!!");
       })
       .catch((error) => {
-        console.log(error);
-        toast.error("Something went wrong.!");
+        if(error.response.status==400 || error.response.status==404){
+          toast.error(error.response.data.message)
+          alert("Password should be in between 8 to 20 characters & must contain atleast one small alphabet,one capital aplhabet and a number.")
+      }else{
+          toast.error("Something went wrong on the Server!")
+      }
       });
   };
   return (

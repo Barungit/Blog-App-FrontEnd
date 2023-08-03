@@ -103,7 +103,7 @@ const Login=()=> {
                             onChange={(e)=> handleChange(e,'password')}
                         />
                     </FormGroup>
-
+                    <NavLink className=' text-primary' tag={ReactLink} to='/forgot/email'>Forgot Password?</NavLink>
                     <NavLink className=' text-primary' tag={ReactLink} to="/signup">New user? Click here to signup!</NavLink>
 
                     {/* Button Fields */}
