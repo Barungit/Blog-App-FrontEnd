@@ -15,6 +15,13 @@ export const createPost=(postData)=>{
     return myAxios.get(`/blogs/status/${visible}?pageNumber=${pageNumber}&pageSize=${pageSize}`).then(response=>response.data);
  };
 
+ //get by pupularity
+ //get all post
+ export const loadPostbyPopularity=(visible,pageNumber,pageSize,sortBy)=>{
+
+  return myAxios.get(`/blogs/status/${visible}?pageNumber=${pageNumber}&pageSize=${pageSize}&sortBy=${sortBy}`).then(response=>response.data);
+};
+
  //get blog by bid
  export const loadPost=(bid)=>{
 
