@@ -44,12 +44,15 @@ function CategorySideMenu() {
   return (
     <div>
       <ListGroup>
-        <ListGroupItem action tag={Link} to="/blogs">
+        <ListGroupItem className="my-2 " style={{fontWeight:'bold'}} action tag={Link} to="/blogs">
           All Blogs
+        </ListGroupItem>
+        <ListGroupItem action className="my-2" style={{fontWeight:'bold'}} tag={Link} to="/blogs/popular">
+          Popular Blogs
         </ListGroupItem>
 
         {categories.map((cat, index) => (
-          <ListGroupItem className="my-2 " key={index} action tag={Link} to={`/categories/${cat.categoryId}`}>
+          <ListGroupItem className="my-2 " style={{fontWeight:'bold'}} key={index} action tag={Link} to={`/categories/${cat.categoryId}`}>
             {cat.categoryTitle} <Badge className="bg-success" style={{float :"right"}}>{batchNumbers[cat.categoryId]}</Badge>
           </ListGroupItem>
         ))}

@@ -24,6 +24,7 @@ import Footer from './Components/Footer';
 import PasswordChange from './pages/user_pages/PasswordChange';
 import ResetPassword from './pages/user_pages/ResetPassword';
 import ForgotPassword from './pages/ForgotPassword';
+import Popular from './pages/Popular';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
       <Route path='/about' element={<About />}/>
       <Route path='/login' element={<Login />}/>
       <Route path='/blogs' element={<AllBlogs />}/>
+      <Route path='/blogs/popular' element={<Popular />}/>
       <Route path='/signup' element={<Signup />}/>
       <Route path='/services' element={<Services />}/>
       <Route path='/blogs/:bid' element={<PostPage />}/>
