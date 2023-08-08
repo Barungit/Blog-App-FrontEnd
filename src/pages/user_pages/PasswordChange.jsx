@@ -1,7 +1,6 @@
 import React from "react";
 import { useContext } from "react";
 import userContext from "../../context/userContext";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Base from "../../Components/Base";
 import {
@@ -60,23 +59,24 @@ function PasswordChange() {
       return;
     }
 
-    changePassword(passwordDetail,userContextData.user.data.uid)
+    changePassword(passwordDetail, userContextData.user.data.uid)
       .then((data) => {
         console.log(data);
         toast.success("Password Changed!!");
       })
       .catch((error) => {
-        if(error.response.status==400 || error.response.status==404){
-          toast.error(error.response.data.message)
-          alert("Password should be in between 8 to 20 characters & must contain atleast one small alphabet,one capital aplhabet and a number.")
-      }else{
-          toast.error("Something went wrong on the Server!")
-      }
+        if (error.response.status == 400 || error.response.status == 404) {
+          toast.error(error.response.data.message);
+          alert(
+            "Password should be in between 8 to 20 characters & must contain atleast one small alphabet,one capital aplhabet and a number."
+          );
+        } else {
+          toast.error("Something went wrong on the Server!");
+        }
       });
   };
   return (
     <Base>
-      
       <div>
         <Container className="my-5">
           <Row>

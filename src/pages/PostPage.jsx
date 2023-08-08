@@ -24,13 +24,17 @@ import {
   UncontrolledDropdown,
 } from "reactstrap";
 import { useEffect } from "react";
-import { createComment, loadPost, deleteComment as dC, updateComment } from "../services/post-service";
+import {
+  createComment,
+  loadPost,
+  deleteComment as dC,
+  updateComment,
+} from "../services/post-service";
 import { useState } from "react";
 import { BASE_URL } from "../services/helper";
 import { toast } from "react-toastify";
 import { checkAdmin, isLoggedIn } from "../auth";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
-import IconButton from "../Components/IconButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function PostPage() {
@@ -44,22 +48,11 @@ function PostPage() {
   const { bid } = useParams();
   const [post, setPost] = useState(null);
   const [showAddDialog, setShowAddDialog] = useState({
-    open : false,
+    open: false,
     id: 0,
-    content:""
+    content: "",
   });
-  const [updateButton,setUpdateButton] = useState(false)
-
-  // const handleAddCategorySubmit = (category) => {
-  //   addCategory(category).then((data)=>{
-  //     console.log(data);
-  //     toast.success("New Category Added");
-  //   }).catch((error) => {
-  //     console.log(error);
-  //     toast.error("Error in creating new Category");
-  //   });
-
-
+  const [updateButton, setUpdateButton] = useState(false);
   useEffect(() => {
     //load the post
     loadPost(bid)
@@ -89,7 +82,7 @@ function PostPage() {
       .then((data) => {
         console.log(data);
         toast.success("You commented on this blog!");
-        
+
         setPost({
           ...post,
           comments: [...post.comments, data],
@@ -104,70 +97,70 @@ function PostPage() {
       });
   };
 
-  const editComment=(event)=>{
+  const editComment = (event) => {
     setShowAddDialog({
       open: true,
       id: event.id,
-      content: event.content
+      content: event.content,
     });
-    
-  }
+  };
 
-  const handleEditedComment=(e)=>{
+  const handleEditedComment = (e) => {
     setUpdateComment({
-      content:e.target.value
-    })
-   
-    setUpdateButton(true);
+      content: e.target.value,
+    });
 
-  }
-  const handleSubmitofEditComment=(e)=>{
+    setUpdateButton(true);
+  };
+  const handleSubmitofEditComment = (e) => {
     e.preventDefault();
     if (updatedComment.content.trim() === "") {
-      toast.warning("Comment Cannot be empty!")
+      toast.warning("Comment Cannot be empty!");
       return;
     }
-    updateComment(showAddDialog.id,updatedComment).then((data)=>{
-      console.log(data);
-      const updatedComments = post.comments.map((c) => {
-        if (c.id === showAddDialog.id) {
-          return data; // Replace the comment with updated data
-        }
-        return c; // Keep other comments unchanged
-      });
-  
-      setPost({
-        ...post,
-        comments: updatedComments,
-      });
-      setShowAddDialog(false)
-      toast.success("Comment updated Successfully");
-    }).catch((error) => {
-      console.log(error);
-    });
-  }
-  
+    updateComment(showAddDialog.id, updatedComment)
+      .then((data) => {
+        console.log(data);
+        const updatedComments = post.comments.map((c) => {
+          if (c.id === showAddDialog.id) {
+            return data; // Replace the comment with updated data
+          }
+          return c; // Keep other comments unchanged
+        });
 
-  const deleteComment=(event)=>{
-    console.log("DElete");
-    dC(event).then((data)=>{
-      console.log(data);
-      setPost({
-        ...post,
-        comments: post.comments.filter(comment => comment.id !== event)
+        setPost({
+          ...post,
+          comments: updatedComments,
+        });
+        setShowAddDialog(false);
+        toast.success("Comment updated Successfully");
+      })
+      .catch((error) => {
+        console.log(error);
       });
-      // SetCategories(categories.filter(cat => cat.categoryId !== cid));
-      toast.success("Comment deleted Successfully");
-    }).catch((error) => {
-      console.log(error);
-    });
-  }
+  };
+
+  const deleteComment = (event) => {
+    console.log("DElete");
+    dC(event)
+      .then((data) => {
+        console.log(data);
+        setPost({
+          ...post,
+          comments: post.comments.filter((comment) => comment.id !== event),
+        });
+        // SetCategories(categories.filter(cat => cat.categoryId !== cid));
+        toast.success("Comment deleted Successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <Base>
       <Container>
         <Card className="my-2">
-          
           <CardBody>
             <CardTitle
               tag="h1"
@@ -175,49 +168,49 @@ function PostPage() {
                 fontSize: "52px",
                 fontWeight: "bold",
                 marginBottom: "10px",
-                textAlign: 'center'
+                textAlign: "center",
               }}
             >
               {post?.title}
             </CardTitle>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <CardSubtitle
-              className="mb-2 text-muted"
-              tag="h5"
-              style={{ fontStyle: "italic"   }}
-            >
-              {"Category: " + post?.category.categoryTitle}
-            </CardSubtitle>
-            <CardText tag="h5"
-              style={{ fontStyle: "italic"  }}>
-              <small className="text-muted">
-                Posted By : <b>{post?.user.name}</b> on{" "}
-                <b>{printDate(post?.uploadDate)}</b>
-              </small>
-            </CardText>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <CardSubtitle
+                className="mb-2 text-muted"
+                tag="h5"
+                style={{ fontStyle: "italic" }}
+              >
+                {"Category: " + post?.category.categoryTitle}
+              </CardSubtitle>
+              <CardText tag="h5" style={{ fontStyle: "italic" }}>
+                <small className="text-muted">
+                  Posted By : <b>{post?.user.name}</b> on{" "}
+                  <b>{printDate(post?.uploadDate)}</b>
+                </small>
+              </CardText>
             </div>
-            <hr style={{ height: '2px', backgroundColor: '#e0e0e0', border: 'none', margin: '20px 0' }} />
-           { (post?.picname) && <CardImg
-              alt="Not in this blog! :("
-              src={BASE_URL + "/blogs/image/" + post?.picname}
+            <hr
               style={{
-                height: 500,
-                width: '50%',
-                float: 'right'
+                height: "2px",
+                backgroundColor: "#e0e0e0",
+                border: "none",
+                margin: "20px 0",
               }}
-            />}
+            />
+            {post?.picname && (
+              <CardImg
+                alt="Not in this blog! :("
+                src={BASE_URL + "/blogs/image/" + post?.picname}
+                style={{
+                  height: 500,
+                  width: "50%",
+                  float: "right",
+                }}
+              />
+            )}
             <CardText
               dangerouslySetInnerHTML={{ __html: post?.content }}
             ></CardText>
-            
           </CardBody>
-          
-          {/* <div className="image-container">
-            <img
-              src={BASE_URL + "/blogs/image/" + post?.picname}
-              alt="Not in this blog! :("
-            ></img>
-          </div> */}
         </Card>
 
         <Row className="my-4">
@@ -225,35 +218,51 @@ function PostPage() {
             md={{
               size: 6,
               offset: 2,
-              
             }}
           >
             <h3>Comments :{post ? post.comments.length : 0}</h3>
             {post?.comments &&
               post.comments.map((c, id) => (
-                <Card className="mt-2 p-2 border-2 border-dark bg-light" key={id}>
-                   <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '16px', margin: '0px' }}>
-                  <span >
-                    {c?.commentAuthor}
-                  </span><span >{printDate(c?.commentDate)}</span>
+                <Card
+                  className="mt-2 p-2 border-2 border-dark bg-light"
+                  key={id}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      fontWeight: "bold",
+                      fontSize: "16px",
+                      margin: "0px",
+                    }}
+                  >
+                    <span>{c?.commentAuthor}</span>
+                    <span>{printDate(c?.commentDate)}</span>
                   </div>
-                  
-                  <CardBody style={{ display: 'flex', justifyContent: 'space-between'}}>
-                    <p  className="overflow-auto">{c?.content} </p>
-                  { isLoggedIn()  && (local.user.uid==c.userId || checkAdmin()) && (<UncontrolledDropdown>
-      <DropdownToggle>
-      <FontAwesomeIcon icon={faEllipsisVertical}/>
-      </DropdownToggle>
-      <DropdownMenu>
-        <DropdownItem onClick={(event)=>editComment(c)}>
-          Edit
-        </DropdownItem>
-        <DropdownItem divider />
-        <DropdownItem onClick={(event)=>deleteComment(c.id)}>
-          Delete
-        </DropdownItem>
-      </DropdownMenu>
-    </UncontrolledDropdown> )}
+
+                  <CardBody
+                    style={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <p className="overflow-auto">{c?.content} </p>
+                    {isLoggedIn() &&
+                      (local.user.uid == c.userId || checkAdmin()) && (
+                        <UncontrolledDropdown>
+                          <DropdownToggle>
+                            <FontAwesomeIcon icon={faEllipsisVertical} />
+                          </DropdownToggle>
+                          <DropdownMenu>
+                            <DropdownItem onClick={(event) => editComment(c)}>
+                              Edit
+                            </DropdownItem>
+                            <DropdownItem divider />
+                            <DropdownItem
+                              onClick={(event) => deleteComment(c.id)}
+                            >
+                              Delete
+                            </DropdownItem>
+                          </DropdownMenu>
+                        </UncontrolledDropdown>
+                      )}
                   </CardBody>
                 </Card>
               ))}
@@ -275,24 +284,37 @@ function PostPage() {
           </Col>
         </Row>
         {showAddDialog.open && (
-      <Modal isOpen={true} toggle={() => setShowAddDialog(false)}>
-        <ModalHeader>Update Comment</ModalHeader>
-        <ModalBody>
-         <Form onSubmit={handleSubmitofEditComment}>
-          <Label for="new comment">Edit Comment : {showAddDialog.id}</Label>
-          <Input
-          type="textarea"
-          id="new comment"
-          defaultValue={showAddDialog.content}
-          // value={}
-           onChange={handleEditedComment}
-        />
-        {updateButton && (<Button type="submit" color="primary">Update</Button>)}
-        <Button type="button" className="my-2" color="secondary" onClick={() => setShowAddDialog(false)}>Cancel</Button>
-         </Form>
-        </ModalBody>
-      </Modal>
-    )}
+          <Modal isOpen={true} toggle={() => setShowAddDialog(false)}>
+            <ModalHeader>Update Comment</ModalHeader>
+            <ModalBody>
+              <Form onSubmit={handleSubmitofEditComment}>
+                <Label for="new comment">
+                  Edit Comment : {showAddDialog.id}
+                </Label>
+                <Input
+                  type="textarea"
+                  id="new comment"
+                  defaultValue={showAddDialog.content}
+                  // value={}
+                  onChange={handleEditedComment}
+                />
+                {updateButton && (
+                  <Button type="submit" color="primary">
+                    Update
+                  </Button>
+                )}
+                <Button
+                  type="button"
+                  className="my-2"
+                  color="secondary"
+                  onClick={() => setShowAddDialog(false)}
+                >
+                  Cancel
+                </Button>
+              </Form>
+            </ModalBody>
+          </Modal>
+        )}
       </Container>
     </Base>
   );

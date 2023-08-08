@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { NavLink as ReactLink } from 'react-router-dom';
 import { Button, Card, CardBody, CardHeader, Container, Form, FormFeedback, FormGroup, Input, Label, NavLink } from "reactstrap"
 import { signUp, uploadProPic } from "../services/user-service"
@@ -24,11 +24,7 @@ const Signup=()=> {
 
     const [image, setImage] = useState(null);
     const navigate=useNavigate()
-    /*
-    useEffect(()=>{
-        console.log(data)
-    },[data])*/
-
+    
     //to add the data from form to the object data
     const handleChange=(event,property)=>{
        setData({...data,[property]:event.target.value})
@@ -50,10 +46,7 @@ const Signup=()=> {
     const submitForm=(event)=>{
         event.preventDefault();
 
-       /* if(error.isError){
-            toast.error("Form data is invalid!!")
-            return;
-        }*/
+       
 
         console.log(data);
 
@@ -102,8 +95,7 @@ const Signup=()=> {
     return (
         <Base>
         <div>
-            {/* for blog lovers!. Read , write, explore!*/}
-            {/* container to make the form have ggaps from both ends and margin y axis to gap from top and bottom.*/}
+            
             <Container className="my-3">
             
             <Card style={{border: '3px solid black'}}>

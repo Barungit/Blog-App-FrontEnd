@@ -13,8 +13,8 @@
   }
 }
 
-.mainbody{
-  background-color:#f1c7c7;
+.mainbody {
+  background-color: #f1c7c7;
 }
 
 .App-header {
@@ -45,7 +45,8 @@
   background-color: #17a2b8 !important;
 }
 
-a.bg-primary:hover, a.bg-primary:focus,
+a.bg-primary:hover,
+a.bg-primary:focus,
 button.bg-primary:hover,
 button.bg-primary:focus {
   background-color: #117a8b !important;

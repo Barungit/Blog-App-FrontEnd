@@ -1,18 +1,14 @@
 import { useEffect } from "react";
 import Base from "../Components/Base";
-
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.css";
-
 import {
   faAws,
-  faGoogle,
   faInstagram,
   faJava,
   faLinkedin,
   faPython,
   faTwitter,
-  faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 import "./Carousel.css";
 import "./Home.css";
@@ -20,27 +16,20 @@ import pp1 from "../images/boy.jpg";
 import pp2 from "../images/girl.jpg";
 import pp3 from "../images/girl2.jpg";
 import pp4 from "../images/girl3.jpg";
-import pp5 from "../images/smile.jpg";
 
 import {
   Button,
   Card,
-  CardBody,
   CardImg,
   CardImgOverlay,
   CardSubtitle,
-  CardText,
   CardTitle,
   Col,
-  Container,
   Row,
-  UncontrolledCarousel,
 } from "reactstrap";
-
 import { loadAllPost } from "../services/post-service";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
 import { BASE_URL } from "../services/helper";
 import {
   faCar,
@@ -105,7 +94,19 @@ const Home = () => {
                 className="text-white mb-4"
                 style={{ fontFamily: "Georgia", fontSize: "18px" }}
               >
-                Blogs are valuable learning tools as they offer diverse perspectives, expertise, and up-to-date information on various subjects. They enable continuous learning by providing accessible and concise content on complex topics. Blogs often cover practical tips, tutorials, and real-world examples, fostering a deeper understanding of subjects. Engaging with blogs enhances critical thinking and problem-solving skills. Additionally, they promote interactive discussions through comments and social media, creating a supportive learning community. Whether it's technology, science, self-improvement, or any other field, blogs serve as a convenient, user-friendly, and dynamic medium for individuals to expand their knowledge and stay informed.
+                Blogs are valuable learning tools as they offer diverse
+                perspectives, expertise, and up-to-date information on various
+                subjects. They enable continuous learning by providing
+                accessible and concise content on complex topics. Blogs often
+                cover practical tips, tutorials, and real-world examples,
+                fostering a deeper understanding of subjects. Engaging with
+                blogs enhances critical thinking and problem-solving skills.
+                Additionally, they promote interactive discussions through
+                comments and social media, creating a supportive learning
+                community. Whether it's technology, science, self-improvement,
+                or any other field, blogs serve as a convenient, user-friendly,
+                and dynamic medium for individuals to expand their knowledge and
+                stay informed.
               </p>
               <Button className="my-2 my-button">Learn More</Button>
             </div>
@@ -126,20 +127,23 @@ const Home = () => {
         </Row>
       </div>
 
-
       {/* NEW FEEDS */}
-      <div className="container d-flex justify-content-around" style={{ marginTop: '60px' }}>
+      <div
+        className="container d-flex justify-content-around"
+        style={{ marginTop: "60px" }}
+      >
         <div class="container">
           <div class="text-center pb-2">
             <p class="section-title px-5">
-              <span class="px-2 " style={{fontWeight: 'bold'}}>Our Blogs</span>
+              <span class="px-2 " style={{ fontWeight: "bold" }}>
+                Our Blogs
+              </span>
             </p>
             <h1 class="mb-4">Ckeck Our Latest Blogs</h1>
           </div>
         </div>
       </div>
-      {/* <h1 class="mb-4" >New Feeds:</h1> */}
-      {/* style={{ color: '#333', fontSize: '34px', fontWeight: 'bold', margin: '20px' }} */}
+
       <Row className="my-1 mx-4">
         <Col>
           <Carousel
@@ -184,16 +188,15 @@ const Home = () => {
       </Row>
 
       {/* Popular Categories */}
-      
-       
-         
-        
-      <div class="text-center" style={{ marginTop: '60px' }}>
-            <p class="section-title px-5">
-              <span class="px-2 " style={{fontWeight: 'bold'}}>Our Stacks</span>
-            </p>
-            <h1 class="mb-4">Check Our Trending Tags</h1>
-          </div>
+
+      <div class="text-center" style={{ marginTop: "60px" }}>
+        <p class="section-title px-5">
+          <span class="px-2 " style={{ fontWeight: "bold" }}>
+            Our Stacks
+          </span>
+        </p>
+        <h1 class="mb-4">Check Our Trending Tags</h1>
+      </div>
       <div className="container-fluid pt-2">
         <div className="container pb-3">
           <div className="row">
@@ -252,7 +255,6 @@ const Home = () => {
                 class="position-relative overflow-hidden mb-4 "
                 style={{ borderRadius: "50%" }}
               >
-                {/* <img src={pp1} className="card-img-top img-fluid w-100" alt="Image" style={{ height: '150px', width: '150px', borderRadius:'75px' }} /> */}
                 <img
                   class="img-fluid w-100"
                   src={pp1}

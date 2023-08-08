@@ -6,8 +6,6 @@ export const loadAllCategories=()=>{
  }
 
 export const updateCategory=(category,categoryId)=>{
-    console.log(category)
-    console.log(categoryId)
     return privateAxios.put(`/categories/${categoryId}`,category).then(response=>{return response.data});
 }
 
