@@ -5,9 +5,11 @@ export const loadAllCategories=()=>{
     return myAxios.get('/categories/').then(response=>{return response.data});
  }
 
+ //get single category
+ export const getCategory = (categoryId) =>{
+    return privateAxios.get(`/categories/${categoryId}`).then((res) => res.data);
+}
 export const updateCategory=(category,categoryId)=>{
-    console.log(category)
-    console.log(categoryId)
     return privateAxios.put(`/categories/${categoryId}`,category).then(response=>{return response.data});
 }
 

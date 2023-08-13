@@ -4,17 +4,13 @@ import { useState } from "react";
 import {
   Button,
   CardBody,
-  CardText,
   CardTitle,
-  Col,
   Container,
   Form,
   Input,
   Label,
   ListGroup,
   ListGroupItem,
-  ListGroupItemHeading,
-  ListGroupItemText,
   Modal,
   ModalBody,
   ModalHeader,
@@ -22,7 +18,7 @@ import {
 import { addCategory, deleteCategory, loadAllCategories, updateCategory } from "../../services/category-service";
 import { toast } from "react-toastify";
 import IconButton from "../../Components/IconButton";
-import { faPenToSquare, faPlus, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare, faPlus} from "@fortawesome/free-solid-svg-icons";
 import AddCategory from "../../Components/AddCategory";
 
 function ManageCategories() {

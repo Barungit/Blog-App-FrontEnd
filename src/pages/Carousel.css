@@ -1,9 +1,9 @@
 .custom-carousel .carousel-root {
-  height: 500px; /* Adjust the desired height of the carousel */
+  height: 500px;
 }
 
 .custom-carousel .slide {
-  height: 300px; /* Adjust the desired height of the carousel */
+  height: 300px;
 }
 
 .custom-carousel .slide img {

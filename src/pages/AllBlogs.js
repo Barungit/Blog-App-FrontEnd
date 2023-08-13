@@ -1,7 +1,7 @@
 import React from 'react'
 import Base from "../Components/Base"
 import NewFeed from "../Components/NewFeed"
-import { Col, Container, Row } from "reactstrap"
+import { Col, Row } from "reactstrap"
 import CategorySideMenu from "../Components/CategorySideMenu"
 
 

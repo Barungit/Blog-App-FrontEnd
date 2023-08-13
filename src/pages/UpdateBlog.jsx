@@ -4,7 +4,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useContext } from "react";
 import userContext from "../context/userContext";
 import { useEffect } from "react";
-import { loadPost, updatePostService, uploadPostImage } from "../services/post-service";
+import {
+  loadPost,
+  updatePostService,
+  uploadPostImage,
+} from "../services/post-service";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import {
@@ -51,9 +55,9 @@ function UpdateBlog() {
 
   useEffect(() => {
     console.log("First");
-    console.log(object)
-    var local = JSON.parse(localStorage.getItem('data'));
-    console.log(post?.user?.uid + " " + local.user.uid)
+    console.log(object);
+    var local = JSON.parse(localStorage.getItem("data"));
+    console.log(post?.user?.uid + " " + local.user.uid);
     if (post) {
       if (post?.user?.uid != local.user.uid) {
         toast.error("This is not your post!!!");
@@ -63,52 +67,57 @@ function UpdateBlog() {
   }, [post]);
 
   const handleChange = (event, fieldname) => {
-    console.log(post)
+    console.log(post);
     setPost({
       ...post,
       [fieldname]: event.target.value,
     });
   };
 
-  const handlefilechange=(event)=>{
-    console.log(event.target.files[0])
-    
-    setImage(event.target.files[0])
-}
+  const handlefilechange = (event) => {
+    console.log(event.target.files[0]);
 
-  const updatePost=(event)=>{
-    event.preventDefault()
-    console.log(post)
-    if(post.title.trim()===''){
-      alert("Post title is required!!")
-      return; 
-  }
-  if(post.content.trim()===''){
-      alert("post content is required!!")
+    setImage(event.target.files[0]);
+  };
+
+  const updatePost = (event) => {
+    event.preventDefault();
+    console.log(post);
+    if (post.title.trim() === "") {
+      alert("Post title is required!!");
       return;
-  }
-  if(post.categoryId===''){
-      alert("Select some category!!")
-      return;
-  }
-    updatePostService({...post, category: { categoryId:post.categoryId}}, post.bid)
-    .then(res => {
-      console.log(res)
-      if(image!=null){
-        uploadPostImage(post.bid,image).then(data=>{
-        toast.success("Image Uploaded!!");
-       }).catch(error=>{
-           toast.error("Error in uploading image!")
-        console.log(error)
-        })
     }
-      toast.success("Blog Updated")
-    })
-    .catch(error => {
-      console.log(error);
-      toast.error("Error is updating post!")
-    })
-  }
+    if (post.content.trim() === "") {
+      alert("post content is required!!");
+      return;
+    }
+    if (post.categoryId === "") {
+      alert("Select some category!!");
+      return;
+    }
+    updatePostService(
+      { ...post, category: { categoryId: post.categoryId } },
+      post.bid
+    )
+      .then((res) => {
+        console.log(res);
+        if (image != null) {
+          uploadPostImage(post.bid, image)
+            .then((data) => {
+              toast.success("Image Uploaded!!");
+            })
+            .catch((error) => {
+              toast.error("Error in uploading image!");
+              console.log(error);
+            });
+        }
+        toast.success("Blog Updated");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("Error is updating post!");
+      });
+  };
 
   const updateHTML = () => {
     return (
@@ -126,30 +135,33 @@ function UpdateBlog() {
                   placeholder="Enter Blog Title here"
                   name="title"
                   value={post.title}
-                  onChange={(event)=>handleChange(event,'title')}
-                  />
+                  onChange={(event) => handleChange(event, "title")}
+                />
               </div>
 
               <div className="my-3">
                 <Label for="content">Blog Content</Label>
-                {/* <Input type='textarea' id='content' placeholder='Enter Blog content here'
-                                style={{height:'300px'}}></Input> */}
                 <JoditEditor
                   ref={editor}
                   value={post.content}
                   tabIndex={1}
-                  onChange={newContent => setPost({...post, content: newContent})} // tabIndex of textarea
+                  onChange={(newContent) =>
+                    setPost({ ...post, content: newContent })
+                  } // tabIndex of textarea
                 />
               </div>
 
               {/*image*/}
               <div className="my-3">
                 <Label for="image">Select Image</Label>
-                <Input id="image" name="image" type="file" accept="image/*" 
-                onChange={handlefilechange}
+                <Input
+                  id="image"
+                  name="image"
+                  type="file"
+                  accept="image/*"
+                  onChange={handlefilechange}
                 />
               </div>
-
 
               <div className="my-3">
                 <Label for="category">Blog Category</Label>
@@ -158,9 +170,8 @@ function UpdateBlog() {
                   id="category"
                   placeholder="Select Blog Category"
                   name="categoryId"
-                  //value={post.category}
                   defaultValue={post.category}
-                  onChange={(event)=> handleChange(event,'categoryId')}
+                  onChange={(event) => handleChange(event, "categoryId")}
                 >
                   <option disabled value={0}>
                     --Select some category!--
