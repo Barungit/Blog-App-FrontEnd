@@ -172,8 +172,10 @@ const Signup=()=> {
                         value={data.phone}
                         invalid={ error.errors?.response?.data?.phone ? true: false}
                         />
+                        </FormGroup>
                     
                     {/*image*/}
+                    <FormGroup>
                    <div className='my-3'>
                     <Label for="image">Select Image</Label>
                     <Input id="image" name="image" type="file" accept="image/*" onChange={handlefilechange}/>
@@ -182,7 +184,7 @@ const Signup=()=> {
                         <FormFeedback>
                             {error.errors?.response?.data?.phone}
                         </FormFeedback>
-                    </FormGroup>
+                        </FormGroup>
                     <NavLink className=' text-primary' tag={ReactLink} to="/login">Already a user? Click here to login!!</NavLink>
                     {/* Button Fields */}
                     <Container className="text-center">

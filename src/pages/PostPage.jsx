@@ -36,6 +36,8 @@ import { toast } from "react-toastify";
 import { checkAdmin, isLoggedIn } from "../auth";
 import { faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CategorySideMenu from "../Components/CategorySideMenu";
+import Breadcrumbs from "../Components/BreadCrumb";
 
 function PostPage() {
   const local = JSON.parse(localStorage.getItem("data"));
@@ -157,9 +159,26 @@ function PostPage() {
       });
   };
 
+  const breadcrumbs = [
+    { label: 'Home', to: '/' },
+    { label: 'New Feeds', to: '/blogs' },
+  ];
+
   return (
     <Base>
-      <Container>
+     <div>
+      
+        <Row>
+          <Col md={2} className="border">
+            <CategorySideMenu />
+          </Col>
+          {/* BreadCrumb */}
+         
+          <Col md={10} className="border">
+         {/* BreadCrumb */}
+      <Breadcrumbs items={breadcrumbs} />
+   
+      
         <Card className="my-2">
           <CardBody>
             <CardTitle
@@ -315,7 +334,10 @@ function PostPage() {
             </ModalBody>
           </Modal>
         )}
-      </Container>
+      
+      </Col>
+    </Row>
+    </div>
     </Base>
   );
 }

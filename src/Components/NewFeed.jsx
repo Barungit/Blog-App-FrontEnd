@@ -9,9 +9,13 @@ import {
   PaginationItem,
   PaginationLink,
   Container,
+  Breadcrumb,
+  BreadcrumbItem,
 } from "reactstrap";
 import Post from "./Post";
 import { toast } from "react-toastify";
+import BreadCrumb from "./BreadCrumb";
+import Breadcrumbs from "./BreadCrumb";
 
 function NewFeed() {
   const [postContent, setPostContent] = useState({
@@ -67,6 +71,11 @@ function NewFeed() {
       });
   };
 
+  const breadcrumbs = [
+    { label: 'Home', to: '/' },
+    { label: 'New Feeds', to: '/blogs' },
+  ];
+
   return (
     <div className="container fluid mainbody">
       <Row>
@@ -78,10 +87,15 @@ function NewFeed() {
         >
           <h3>Total Blogs : {postContent?.totalElements}</h3>
 
+          {/* BreadCrumb */}
+          <Breadcrumbs items={breadcrumbs} />
+
+          {/* Posts */}
           {postContent?.content?.map((post) => (
             <Post deletePost={deletePost} post={post} key={post?.bid} />
           ))}
 
+          {/* Pagination */}
           <Container className="mt-3">
             <Pagination aria-label="Page navigation example" size="lg">
               <PaginationItem disabled={postContent.pageNumber == 0}>

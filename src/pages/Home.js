@@ -115,9 +115,9 @@ const Home = () => {
             <div className=" my-4">
               <img
                 className="img-fluid"
-                src="https://picsum.photos/900/180"
+                src="https://th.bing.com/th/id/OIG.jIEi7zHguh2eag1mLcb5?pid=ImgGn"
                 style={{
-                  height: 450,
+                  height: 550,
                   borderRadius: 300,
                 }}
                 alt=""

@@ -16,16 +16,25 @@ import {
 } from "../services/post-service";
 import { toast } from "react-toastify";
 import Post from "../Components/Post";
+import Breadcrumbs from "../Components/BreadCrumb";
+import { getCategory } from "../services/category-service";
 
 function Categories() {
+  const [categoryName, setCategoryName] = useState(""); // New state to hold the category name
   const [posts, SetPosts] = useState([]);
   const { categoryId } = useParams();
   useEffect(() => {
     console.log(categoryId);
+    getCategory(categoryId).then((data) => {
+      console.log(data);
+      setCategoryName(data?.categoryTitle);
+    })
+     // Replace "categoryName" with the actual property name
     loadPostbyCategory(categoryId, 0, 10)
       .then((data) => {
         console.log(data);
         SetPosts(data);
+        
       })
       .catch((error) => {
         console.log(error);
@@ -45,6 +54,12 @@ function Categories() {
         toast.error("Error in loading Blogs by pagination!");
       });
   };
+
+  
+  const breadcrumbs = [
+    { label: 'Home', to: '/' },
+    { label: categoryName , to: `/categories/${categoryId}`, dynamic: true, }, // Use the dynamically generated name
+  ];
 
   function deletePost(post) {
     // deleteing a post
@@ -71,8 +86,10 @@ function Categories() {
           <Col md={2} className="border">
             <CategorySideMenu />
           </Col>
-
+          {/* BreadCrumb */}
+         
           <Col md={10} className="border">
+          <Breadcrumbs items={breadcrumbs} />
             <h3>Total Blogs : {posts?.totalElements}</h3>
             {posts?.content?.map((post) => (
               <Post post={post} key={post.bid} deletePost={deletePost} />

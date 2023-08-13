@@ -88,7 +88,7 @@ const Profile_info = () => {
     event.preventDefault();
 
     if (formData.name.trim() === "") {
-      alert("Name is required!!");
+      toast.error("Name is required!!");
       return;
     }
     if (formData.about.trim() === "") {

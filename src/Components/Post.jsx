@@ -14,6 +14,7 @@ import { useContext } from "react";
 import userContext from "../context/userContext";
 import { approvePostService } from "../services/post-service";
 import { toast } from "react-toastify";
+import CategorySideMenu from "./CategorySideMenu";
 
 function Post({
   post = { title: "Def title", content: "Def content" },
@@ -47,6 +48,8 @@ function Post({
   }
 
   return (
+    <div>
+    
     <Card className="border-0 shadow-sm mt-3">
       <CardBody>
         <CardTitle>
@@ -108,6 +111,7 @@ function Post({
         )}
       </CardBody>
     </Card>
+    </div>
   );
 }
 export default Post;

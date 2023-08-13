@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink as ReactLink, useNavigate } from "react-router-dom";
-import img1 from "../images/pi.png";
+import img1 from "../images/pi.jpg";
 import {
   Collapse,
   Navbar,
@@ -76,7 +76,7 @@ const CustomNavBar2 = () => {
         className="px-3"
       >
         <NavbarBrand tag={ReactLink} to="/">
-          <img alt="logos" src={img1} style={{ height: 40, width: 40 }} />
+          <img alt="logos" src={img1} style={{ height: 40, width: 40 , borderRadius:100 }} />
           <span
             className="my-4 text-white mx-2"
             style={{ fontFamily: "Georgia", fontSize: "26px" }}
