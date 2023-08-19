@@ -15,6 +15,7 @@ import {
 } from "../services/post-service";
 import { toast } from "react-toastify";
 import Post from "../Components/Post";
+import Breadcrumbs from "../Components/BreadCrumb";
 function Popular() {
   const [posts, SetPosts] = useState([]);
 
@@ -60,6 +61,11 @@ function Popular() {
         toast.error("Error in deleting this blog!");
       });
   }
+  const breadcrumbs = [
+    { label: 'Home', to: '/' },
+    { label: 'Popular Blogs', to: '/blogs/popular' },
+   
+  ];
 
   return (
     <Base>
@@ -70,6 +76,9 @@ function Popular() {
           </Col>
 
           <Col md={10} className="border">
+             {/* BreadCrumb */}
+      <Breadcrumbs items={breadcrumbs} />
+   
             <h3>Total Blogs : {posts?.totalElements}</h3>
             {posts?.content?.map((post) => (
               <Post post={post} key={post.bid} deletePost={deletePost} />

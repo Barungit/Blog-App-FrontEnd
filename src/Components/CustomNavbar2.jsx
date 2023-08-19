@@ -96,10 +96,10 @@ const CustomNavBar2 = () => {
             </NavItem>
             <NavItem className="mx-3 ">
               <NavLink tag={ReactLink} className=" text-white" to="/about">
-                About
+                About Us
               </NavLink>
             </NavItem>
-            <NavItem className="mx-3">
+            {/* <NavItem className="mx-3">
               <NavLink className=" text-white" tag={ReactLink} to="/services">
                 Services
               </NavLink>
@@ -114,7 +114,7 @@ const CustomNavBar2 = () => {
                 <DropdownItem divider />
                 <DropdownItem>Reset</DropdownItem>
               </DropdownMenu>
-            </UncontrolledDropdown>
+            </UncontrolledDropdown> */}
           </Nav>
           <Nav navbar>
             {/* seach bar in nav bar */}
@@ -123,7 +123,7 @@ const CustomNavBar2 = () => {
                 <Row>
                   <Col>
                     <Input
-                      style={{ width: "350px" }}
+                      style={{ width: "250px" }}
                       type="text"
                       placeholder="Search here..."
                       onChange={(event) => {

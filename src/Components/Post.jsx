@@ -50,7 +50,7 @@ function Post({
   return (
     <div>
     
-    <Card className="border-0 shadow-sm mt-3">
+    <Card className="border-3 shadow-sm mt-3">
       <CardBody>
         <CardTitle>
           <h4>{post.title}</h4>

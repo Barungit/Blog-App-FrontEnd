@@ -14,7 +14,6 @@ import {
 } from "reactstrap";
 import Post from "./Post";
 import { toast } from "react-toastify";
-import BreadCrumb from "./BreadCrumb";
 import Breadcrumbs from "./BreadCrumb";
 
 function NewFeed() {

@@ -12,10 +12,11 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import "./Carousel.css";
 import "./Home.css";
-import pp1 from "../images/boy.jpg";
-import pp2 from "../images/girl.jpg";
-import pp3 from "../images/girl2.jpg";
-import pp4 from "../images/girl3.jpg";
+import pp1 from "../images/1.jpg";
+import pp2 from "../images/2.jpg";
+import pp3 from "../images/3.jpg";
+import pp4 from "../images/4.jpg";
+import img1 from "../images/pi.jpg";
 
 import {
   Button,
@@ -115,7 +116,7 @@ const Home = () => {
             <div className=" my-4">
               <img
                 className="img-fluid"
-                src="https://th.bing.com/th/id/OIG.jIEi7zHguh2eag1mLcb5?pid=ImgGn"
+                src={img1}
                 style={{
                   height: 550,
                   borderRadius: 300,
@@ -285,8 +286,8 @@ const Home = () => {
                   </a>
                 </div>
               </div>
-              <h4>Julia Smith</h4>
-              <i>Music Teacher</i>
+              <h4>Tarun</h4>
+              <i>Design Expert</i>
             </div>
             <div class="col-md-6 col-lg-3 text-center team mb-5">
               <div
@@ -318,8 +319,8 @@ const Home = () => {
                   </a>
                 </div>
               </div>
-              <h4>Julia Smith</h4>
-              <i>Music Teacher</i>
+              <h4>Barun</h4>
+              <i>Java Expert</i>
             </div>
             <div class="col-md-6 col-lg-3 text-center team mb-5">
               <div
@@ -356,8 +357,8 @@ const Home = () => {
                   </a>
                 </div>
               </div>
-              <h4>Julia Smith</h4>
-              <i>Music Teacher</i>
+              <h4>A.Khan</h4>
+              <i>Automation Expert</i>
             </div>
             <div class="col-md-6 col-lg-3 text-center team mb-5">
               <div
@@ -394,8 +395,8 @@ const Home = () => {
                   </a>
                 </div>
               </div>
-              <h4>Julia Smith</h4>
-              <i>Music Teacher</i>
+              <h4>Sachin Soni</h4>
+              <i>DevOps Expert</i>
             </div>
           </div>
         </div>

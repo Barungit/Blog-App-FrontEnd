@@ -35,11 +35,13 @@ function ManageUsers() {
       });
   };
   return (
-    <div>
+    <div className="d-flex justify-content-start flex-wrap">
       {users &&
         users.map((user, index) => {
           return (
-            <Card>
+          
+            <Card className="m-3 " style={{border: '1px solid black', width:"400px"}}>
+              <div className="m-4">
               <center>
                 <img
                   src={BASE_URL + "/users/pfp/" + user.propic}
@@ -47,11 +49,15 @@ function ManageUsers() {
                   width={100}
                 />
               </center>
-              <CardTitle>{user.name}</CardTitle>
-              <CardText>{user.about}</CardText>
-              <Button color="danger" onClick={() => handleDelete(user.uid)}>
+              
+              <CardTitle><b>Name: {user.name}</b></CardTitle>
+              <CardText><b>Email: {user.email}</b></CardText>
+              <CardText><b>About: {user.about}</b></CardText>
+              
+              <center><Button color="danger"  style={{width:"100px"}} onClick={() => handleDelete(user.uid)}>
                 Delete
-              </Button>
+              </Button></center>
+              </div>
             </Card>
           );
         })}

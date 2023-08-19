@@ -79,11 +79,11 @@ function AdminPage() {
                 </Row>
               </TabPane>
               <TabPane tabId="2">
-                <Row>
-                  <Col sm="6">
+                {/* <Row >
+                  <Col sm="12" > */}
                     <ManageUsers />
-                  </Col>
-                </Row>
+                  {/* </Col>
+                </Row> */}
               </TabPane>
               <TabPane tabId="3">
                 <Row>
