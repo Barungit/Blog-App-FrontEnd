@@ -91,14 +91,22 @@ const Profile_info = () => {
       toast.error("Name is required!!");
       return;
     }
+    if (formData.name.trim().length < 3) {
+      toast.error("Name must be at least 3 characters long!!");
+      return;
+    } 
     if (formData.about.trim() === "") {
       alert("about is required!!");
       return;
     }
-    if (formData.phone === "") {
-      alert("Enter phone number!");
+    if (formData.about.trim().length < 10) {
+      toast.error("About must be at least 10 characters long!!");
       return;
-    }
+    } 
+    // if (formData.phone === "") {
+    //   alert("Enter phone number!");
+    //   return;
+    // }
     console.log(formData);
     updateUserDetails(formData, local.user.uid)
       .then((data) => {

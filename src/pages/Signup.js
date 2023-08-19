@@ -98,7 +98,7 @@ const Signup=()=> {
             
             <Container className="my-3">
             
-            <Card style={{border: '3px solid black'}}>
+            <Card style={{border: '1px solid black'}}>
             <CardHeader className="bg-primary">
                 <h3 className="text-white">Fill this form to be a part of us! </h3>
 
@@ -166,7 +166,7 @@ const Signup=()=> {
 
                     {/* Phone Field */}
                     <FormGroup>
-                        <Label for="phone">Enter Phone Number</Label>
+                        <Label for="phone">Enter Phone Number (Optional)</Label>
                         <Input id="phone" type="tel" placeholder="+91 5556667770" 
                         onChange={(e)=> handleChange(e,'phone')}
                         value={data.phone}

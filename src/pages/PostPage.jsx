@@ -162,6 +162,10 @@ function PostPage() {
   const breadcrumbs = [
     { label: 'Home', to: '/' },
     { label: 'New Feeds', to: '/blogs' },
+    ...(post?.visible === false
+      ? [{ label: 'Blogs to Approve', to: '/user/admin/home' }]
+      : []),
+    {  label: post?.title , to:'#'}
   ];
 
   return (
